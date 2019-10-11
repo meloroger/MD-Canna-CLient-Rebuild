@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { ItemChartComponent } from './charts/item-chart/item-chart.component';
+import { OrderChartComponent } from './charts/order-chart/order-chart.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
+    ItemChartComponent,
+    OrderChartComponent,
   ],
   imports: [CommonModule],
   exports: [
