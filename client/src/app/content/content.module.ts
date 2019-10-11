@@ -6,12 +6,21 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
-
-
 @NgModule({
-  declarations: [DashboardComponent, HomeComponent, LoginComponent, ProfileComponent, RegisterComponent],
-  imports: [
-    CommonModule
-  ]
+  declarations: [
+    DashboardComponent,
+    HomeComponent,
+    LoginComponent,
+    ProfileComponent,
+    RegisterComponent,
+  ],
+  imports: [CommonModule],
+  exports: [
+    DashboardComponent,
+    HomeComponent,
+    LoginComponent,
+    ProfileComponent,
+    RegisterComponent,
+  ],
 })
-export class ContentModule { }
+export class ContentModule {}

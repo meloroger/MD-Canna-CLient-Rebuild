@@ -1,0 +1,13 @@
+.spacer {
+  flex: auto;
+}
+
+.topNav {
+  font-size: 15px;
+  padding-right: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
