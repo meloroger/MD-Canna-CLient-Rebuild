@@ -1,6 +1,7 @@
 import { Controller, Get, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Observable, of } from 'rxjs';
+import { resolve } from 'path';
 
 @Controller()
 export class AppController {
@@ -8,7 +9,7 @@ export class AppController {
 
   @Get()
   sendApplication(@Res() response) {
-    response.sendFile('client-build/index.html');
+    response.sendFile(resolve('../client-build/index.html'));
   }
 
   @Get('hello')
