@@ -7,8 +7,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  sendApplication(@Res() response): Observable<any> {
-    return response.sendFile('index.html');
+  sendApplication(@Res() response) {
+    response.sendFile('index.html');
   }
 
   @Get('hello')
