@@ -2,6 +2,9 @@
   "name": "md-canna",
   "version": "0.0.1",
   "description": "",
+  "engines": {
+    "node": "10.15.3"
+  },
   "author": "",
   "license": "MIT",
   "scripts": {
