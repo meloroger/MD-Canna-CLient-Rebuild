@@ -18,6 +18,16 @@ export class ItemChartComponent implements OnInit {
       type: 'bar',
       options: {
         responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
         title: {
           display: true,
           text: 'Combo Bar and line Chart',

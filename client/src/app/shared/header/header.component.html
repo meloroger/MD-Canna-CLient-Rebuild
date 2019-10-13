@@ -1,15 +1,21 @@
 <mat-toolbar color="primary">
-  <a href="">
+  <a [routerLink]="['/']">
     MD CANNA SUPPLY
   </a>
   <span class="spacer"></span>
-  <a href="">
-    <span class="topNav">Register</span>
+  <a (click)="registerHandler()">
+    <span class="topNav">
+      Register
+    </span>
   </a>
-  <a href="">
-    <span class="topNav">Login</span>
+  <a (click)="loginHandler()">
+    <span class="topNav">
+      Login
+    </span>
   </a>
-  <a href="">
-    <span class="topNav">Logout</span>
+  <a (click)="logoutHandler()">
+    <span class="topNav">
+      Logout
+    </span>
   </a>
 </mat-toolbar>

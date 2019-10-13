@@ -12,3 +12,8 @@ a {
   text-decoration: none;
   color: #fff;
 }
+
+.active {
+  font-style: italic;
+  color: #ccc;
+}

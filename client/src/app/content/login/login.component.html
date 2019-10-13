@@ -1,1 +1,31 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+  <div flexLayout="column">
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email" />
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+  </div>
+  <div flexLayout="column">
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" />
+      <mat-icon matSuffix>https</mat-icon>
+    </mat-form-field>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="loginBtns">
+    <button
+      type="submit"
+      class="btn"
+      [disabled]="loginForm.invalid"
+      mat-raised-button
+      color="primary"
+    >
+      Login
+    </button>
+    <button class="btn" (click)="cancelAction()" mat-flat-button color="warn">
+      Cancel
+    </button>
+  </div>
+</form>

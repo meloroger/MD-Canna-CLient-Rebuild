@@ -7,6 +7,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ItemChartComponent } from './charts/item-chart/item-chart.component';
 import { OrderChartComponent } from './charts/order-chart/order-chart.component';
+import { AppMaterialModule } from '../app-material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrderListComponent } from './order-list/order-list.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +21,10 @@ import { OrderChartComponent } from './charts/order-chart/order-chart.component'
     RegisterComponent,
     ItemChartComponent,
     OrderChartComponent,
+    OrderListComponent,
+    OrderDetailComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, AppMaterialModule, FormsModule, ReactiveFormsModule],
   exports: [
     DashboardComponent,
     HomeComponent,
