@@ -1,0 +1,79 @@
+.pimg1,
+.pimg2,
+.pimg3,
+.pimg4 {
+  position: relative;
+  opacity: 0.7;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.pimg1 {
+  background-image: url('../../../assets/asus-zenbook-pro-duo-2.jpg');
+  min-height: 400px;
+}
+.pimg2 {
+  background-image: url('../../../assets/surfaceNeo.jpg');
+  min-height: 80vh;
+}
+.pimg3 {
+  background-image: url('../../../assets/16-inch-MacBook-Pro-concept.jpg');
+  min-height: 80vh;
+}
+
+.footer {
+  background-image: url('../../../assets/xiaomiAlpha.jpg');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.pimg4 {
+  height: 80vh;
+}
+
+.section {
+  text-align: center;
+  padding: 25px 50px;
+}
+
+.section-light {
+  background-color: #f4f4f4;
+  color: #676;
+}
+
+.section-dark {
+  background-color: #282e34;
+  color: #ddd;
+}
+
+.ptext {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  font-size: 27px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+}
+
+.ptext .border {
+  background-color: #111;
+  color: #fff;
+  padding: 20px;
+}
+
+.ptext .border.trans {
+  background-color: transparent;
+}
+
+@media (max-width: 568px) {
+  .pimg1,
+  .pimg2,
+  .pimg3 {
+    background-attachment: scroll;
+  }
+}

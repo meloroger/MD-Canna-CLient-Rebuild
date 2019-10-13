@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-import { OrderEditComponent } from './order-edit/order-edit.component';
-import { OrderCreateComponent } from './order-create/order-create.component';
+import { Component, OnInit } from '@angular/core';
+import {
+  MatTableDataSource,
+  MatDialog,
+  MatDialogConfig,
+} from '@angular/material';
+import { StockCreateComponent } from '../stock-list/stock-create/stock-create.component';
+import { StockEditComponent } from '../stock-list/stock-edit/stock-edit.component';
+import { ItemEditComponent } from './item-edit/item-edit.component';
+import { ItemCreateComponent } from './item-create/item-create.component';
 
 export interface PeriodicElement {
   name: string;
@@ -25,11 +30,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-order-list',
-  templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.css'],
+  selector: 'app-item-list',
+  templateUrl: './item-list.component.html',
+  styleUrls: ['./item-list.component.css'],
 })
-export class OrderListComponent {
+export class ItemListComponent {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'icon'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
@@ -44,7 +49,7 @@ export class OrderListComponent {
     // dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
-    this.dialog.open(OrderCreateComponent, dialogConfig);
+    this.dialog.open(ItemCreateComponent, dialogConfig);
   }
 
   editHandler(order: object): void {
@@ -52,7 +57,7 @@ export class OrderListComponent {
     // dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
-    this.dialog.open(OrderEditComponent, dialogConfig);
+    this.dialog.open(ItemEditComponent, dialogConfig);
   }
 
   deleteHandler(id: string): void {

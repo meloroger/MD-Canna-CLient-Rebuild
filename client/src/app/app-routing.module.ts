@@ -6,6 +6,11 @@ import { RegisterComponent } from './content/register/register.component';
 import { LoginComponent } from './content/login/login.component';
 import { ProfileComponent } from './content/profile/profile.component';
 import { DashboardComponent } from './content/dashboard/dashboard.component';
+import { OrderListComponent } from './content/order-list/order-list.component';
+import { EmployeeListComponent } from './content/employee-list/employee-list.component';
+import { ItemListComponent } from './content/item-list/item-list.component';
+import { StockListComponent } from './content/stock-list/stock-list.component';
+import { LiveFeedComponent } from './content/live-feed/live-feed.component';
 
 const routes: Routes = [
   {
@@ -23,6 +28,26 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+      },
+      {
+        path: 'orders',
+        component: OrderListComponent,
+      },
+      {
+        path: 'employees',
+        component: EmployeeListComponent,
+      },
+      {
+        path: 'items',
+        component: ItemListComponent,
+      },
+      {
+        path: 'stock',
+        component: StockListComponent,
+      },
+      {
+        path: 'live-feed',
+        component: LiveFeedComponent,
       },
     ],
   },
