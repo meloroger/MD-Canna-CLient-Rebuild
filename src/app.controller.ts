@@ -8,7 +8,7 @@ export class AppController {
 
   @Get()
   sendApplication(@Res() response) {
-    response.sendFile('index.html');
+    response.sendFile('./client-build/index.html');
   }
 
   @Get('hello')
