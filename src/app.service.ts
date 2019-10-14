@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AppService {
   constructor(private http: HttpService) {}
-  getHello(): string {
+  getHello() {
     return 'Hello from Nest.js';
   }
 }
