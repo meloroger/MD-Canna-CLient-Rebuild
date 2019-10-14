@@ -22,6 +22,7 @@ import { LiveFeedComponent } from './live-feed/live-feed.component';
 import { StockListComponent } from './stock-list/stock-list.component';
 import { StockEditComponent } from './stock-list/stock-edit/stock-edit.component';
 import { StockCreateComponent } from './stock-list/stock-create/stock-create.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,13 @@ import { StockCreateComponent } from './stock-list/stock-create/stock-create.com
     StockCreateComponent,
     LiveFeedComponent,
   ],
-  imports: [CommonModule, AppMaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AppMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   exports: [
     DashboardComponent,
     HomeComponent,

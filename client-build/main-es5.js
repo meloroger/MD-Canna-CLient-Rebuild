@@ -1354,6 +1354,7 @@
             /* harmony import */ var _stock_list_stock_list_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./stock-list/stock-list.component */ "./src/app/content/stock-list/stock-list.component.ts");
             /* harmony import */ var _stock_list_stock_edit_stock_edit_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./stock-list/stock-edit/stock-edit.component */ "./src/app/content/stock-list/stock-edit/stock-edit.component.ts");
             /* harmony import */ var _stock_list_stock_create_stock_create_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./stock-list/stock-create/stock-create.component */ "./src/app/content/stock-list/stock-create/stock-create.component.ts");
+            /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
             var ContentModule = /** @class */ (function () {
                 function ContentModule() {
                 }
@@ -1383,7 +1384,13 @@
                         _stock_list_stock_create_stock_create_component__WEBPACK_IMPORTED_MODULE_24__["StockCreateComponent"],
                         _live_feed_live_feed_component__WEBPACK_IMPORTED_MODULE_21__["LiveFeedComponent"],
                     ],
-                    imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _app_material_module__WEBPACK_IMPORTED_MODULE_10__["AppMaterialModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_11__["ReactiveFormsModule"]],
+                    imports: [
+                        _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                        _app_material_module__WEBPACK_IMPORTED_MODULE_10__["AppMaterialModule"],
+                        _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"],
+                        _angular_forms__WEBPACK_IMPORTED_MODULE_11__["ReactiveFormsModule"],
+                        _angular_common_http__WEBPACK_IMPORTED_MODULE_25__["HttpClientModule"],
+                    ],
                     exports: [
                         _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_3__["DashboardComponent"],
                         _home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"],
