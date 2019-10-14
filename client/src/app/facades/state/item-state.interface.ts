@@ -1,5 +1,5 @@
 import { Pagination } from 'src/app/model/pagination.interface';
-import { Item } from 'src/app/model/item.model';
+import { Item } from 'src/app/model/item.interface';
 
 export interface ItemState {
   items: Item[];
