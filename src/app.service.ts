@@ -5,6 +5,6 @@ import { Observable } from 'rxjs';
 export class AppService {
   constructor(private http: HttpService) {}
   getHello() {
-    return 'Hello from Nest.js';
+    return { message: 'Hello from Nest.js' };
   }
 }
