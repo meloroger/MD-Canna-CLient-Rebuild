@@ -1820,10 +1820,11 @@
                     this.http = http;
                 }
                 LiveFeedComponent.prototype.ngOnInit = function () {
-                    var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
-                    headers.set('Content-Type', 'application/json');
+                    var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                        'Content-Type': 'application/json; charset=utf-8',
+                    });
                     this.message = this.http
-                        .get('/hello', { headers: headers })
+                        .get('hello', { headers: headers })
                         .subscribe(function (rsp) { return console.log(rsp); });
                 };
                 return LiveFeedComponent;

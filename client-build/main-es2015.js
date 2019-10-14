@@ -1984,10 +1984,11 @@ let LiveFeedComponent = class LiveFeedComponent {
         this.http = http;
     }
     ngOnInit() {
-        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
-        headers.set('Content-Type', 'application/json');
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+            'Content-Type': 'application/json; charset=utf-8',
+        });
         this.message = this.http
-            .get('/hello', { headers })
+            .get('hello', { headers })
             .subscribe(rsp => console.log(rsp));
     }
 };

@@ -11,10 +11,11 @@ export class LiveFeedComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    const headers = new HttpHeaders();
-    headers.set('Content-Type', 'application/json');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+    });
     this.message = this.http
-      .get('/hello', { headers })
+      .get('hello', { headers })
       .subscribe(rsp => console.log(rsp));
   }
 }
