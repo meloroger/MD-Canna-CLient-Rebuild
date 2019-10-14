@@ -3,7 +3,7 @@ import { StockState } from './state/stock-state.interface';
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { StockService } from 'src/app/services/stock.service';
-import { StockMovement } from 'src/app/model/stock-movement.model';
+import { StockMovement } from 'src/app/model/stock-movement.interface';
 import { Pagination } from 'src/app/model/pagination.interface';
 
 @Injectable()

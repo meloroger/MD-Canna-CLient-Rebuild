@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, combineLatest, Subscription } from 'rxjs';
 import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { OrderService } from 'src/app/services/order.service';
 import { Pagination } from 'src/app/model/pagination.interface';
-import { Order } from 'src/app/model/order.model';
+import { Order } from 'src/app/model/order.interface';
 
 @Injectable()
 export class OrderFacade {

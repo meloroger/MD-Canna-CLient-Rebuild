@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { ItemService } from '../services/item.service';
 import { Pagination } from '../model/pagination.interface';
-import { Item } from '../model/item.model';
+import { Item } from '../model/item.interface';
 
 @Injectable()
 export class ItemFacade {
