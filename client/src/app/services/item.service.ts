@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
-import { Item } from '../model/item.model';
-import { tap } from 'rxjs/operators';
+import { Item } from '../model/item.interface';
 import { environment } from 'src/environments/environment';
-import { StockMovement } from '../model/stock-movement.model';
 
 @Injectable({
   providedIn: 'root'

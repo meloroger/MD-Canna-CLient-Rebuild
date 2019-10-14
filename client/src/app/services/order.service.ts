@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Order } from '../model/order.model';
+import { Order } from '../model/order.interface';
 import { AuthService } from './auth.service';
 import { tap, subscribeOn } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
