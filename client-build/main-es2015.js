@@ -1984,7 +1984,11 @@ let LiveFeedComponent = class LiveFeedComponent {
         this.http = http;
     }
     ngOnInit() {
-        this.message = this.http.get('/hello').subscribe(rsp => console.log(rsp));
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
+        headers.set('Content-Type', 'application/json');
+        this.message = this.http
+            .get('/hello', { headers })
+            .subscribe(rsp => console.log(rsp));
     }
 };
 LiveFeedComponent.ctorParameters = () => [

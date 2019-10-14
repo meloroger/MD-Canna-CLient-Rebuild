@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-live-feed',
@@ -11,6 +11,10 @@ export class LiveFeedComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.message = this.http.get('/hello').subscribe(rsp => console.log(rsp));
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    this.message = this.http
+      .get('/hello', { headers })
+      .subscribe(rsp => console.log(rsp));
   }
 }
