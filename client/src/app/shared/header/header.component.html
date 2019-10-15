@@ -1,21 +1,35 @@
 <mat-toolbar color="primary">
+  <ng-container *ngIf="loggedIn()">
+    <div class="toggle">
+      <a (click)="showMenu()">
+        <mat-icon>fingerprint</mat-icon>
+      </a>
+    </div>
+  </ng-container>
   <a [routerLink]="['/']">
     MD CANNA SUPPLY
   </a>
   <span class="spacer"></span>
-  <a (click)="registerHandler()">
-    <span class="topNav">
-      Register
-    </span>
-  </a>
-  <a (click)="loginHandler()">
-    <span class="topNav">
-      Login
-    </span>
-  </a>
-  <a (click)="logoutHandler()">
-    <span class="topNav">
-      Logout
-    </span>
-  </a>
+  <ng-container *ngIf="!loggedIn()">
+    <a (click)="registerHandler()">
+      <span class="topNav">
+        Register
+      </span>
+    </a>
+  </ng-container>
+  <ng-container *ngIf="!loggedIn()">
+    <a (click)="loginHandler()">
+      <span class="topNav">
+        Login
+      </span>
+    </a>
+  </ng-container>
+  <ng-container *ngIf="loggedIn()">
+    <div class="topNav">Welcome {{ getUserName() }} |</div>
+    <a (click)="logoutHandler()">
+      <span class="topNav">
+        Logout
+      </span>
+    </a>
+  </ng-container>
 </mat-toolbar>

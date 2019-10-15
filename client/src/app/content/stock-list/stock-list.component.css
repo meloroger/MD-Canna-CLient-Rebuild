@@ -1,5 +1,118 @@
-/* Structure */
-table {
+a {
+  cursor: pointer;
+}
+
+.mat-card-title {
+  text-align: center;
+}
+
+.topFilterBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.filter {
+  width: 90%;
+}
+
+.btn {
+  padding-left: 20px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 80%;
+  float: right;
+}
+
+.mat-card {
+  margin: 5px;
+  height: 95%;
+  padding: 15px 0px 0px 0px;
+}
+
+.stocks {
+  padding-top: 10px;
+  table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.stocks td {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stocks th {
+  background: rgb(101, 100, 94);
+  border-radius: 5px;
+  color: white;
+  font-weight: 100;
+}
+
+.thText {
+  font-size: 60%;
+  padding: 8px 0;
+  text-align: center;
+}
+
+.stocks td,
+.stocks th {
+  text-align: left;
+  padding: 5px 10px;
+}
+
+.stocks tr:nth-child(even) {
+  background: rgb(98, 120, 128);
+}
+
+.row-ID {
+  width: 40%;
+}
+
+.row-itemId {
+  width: 40%;
+}
+
+.row-quantity {
+  width: 40%;
+}
+
+.row-icon {
+  width: 20%;
+}
+
+.itemId {
+  border-bottom: lightgray dotted 1px;
+}
+.itemName {
+  border-bottom: lightgray dotted 1px;
+}
+
+.quantity {
+  border-bottom: lightgray dotted 1px;
+}
+
+.icons {
+  border-bottom: lightgray dotted 1px;
+}
+
+.iconsBttm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.deleteIcon {
+  color: orangered;
+}
+
+/* table {
   width: 100%;
 }
 
@@ -11,7 +124,7 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  align-stocks: center;
 }
 
 .filter {
@@ -37,3 +150,4 @@ a {
 .deleteIcon {
   color: orangered;
 }
+ */

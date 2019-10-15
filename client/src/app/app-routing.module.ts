@@ -11,6 +11,7 @@ import { EmployeeListComponent } from './content/employee-list/employee-list.com
 import { ItemListComponent } from './content/item-list/item-list.component';
 import { StockListComponent } from './content/stock-list/stock-list.component';
 import { LiveFeedComponent } from './content/live-feed/live-feed.component';
+import { AccessComponent } from './layouts/access/access.component';
 
 const routes: Routes = [
   {
@@ -19,50 +20,60 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent,
+        component: HomeComponent
+      }
+    ]
+  },
+  {
+    path: 'welcome',
+    component: AccessComponent,
+    children: [
+      {
+        path: '',
+        component: HomeComponent
       },
       {
         path: 'profile',
-        component: ProfileComponent,
+        component: ProfileComponent
       },
       {
         path: 'dashboard',
-        component: DashboardComponent,
+        component: DashboardComponent
       },
       {
         path: 'orders',
-        component: OrderListComponent,
+        component: OrderListComponent
       },
       {
         path: 'employees',
-        component: EmployeeListComponent,
+        component: EmployeeListComponent
       },
       {
         path: 'items',
-        component: ItemListComponent,
+        component: ItemListComponent
       },
       {
         path: 'stock',
-        component: StockListComponent,
+        component: StockListComponent
       },
       {
         path: 'live-feed',
-        component: LiveFeedComponent,
-      },
-    ],
+        component: LiveFeedComponent
+      }
+    ]
   },
   {
     path: 'register',
-    component: RegisterComponent,
+    component: RegisterComponent
   },
   {
     path: 'login',
-    component: LoginComponent,
-  },
+    component: LoginComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

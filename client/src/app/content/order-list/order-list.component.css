@@ -1,10 +1,9 @@
-/* Structure */
-table {
-  width: 100%;
-}
-
 a {
   cursor: pointer;
+}
+
+.mat-card-title {
+  text-align: center;
 }
 
 .topFilterBtn {
@@ -15,7 +14,7 @@ a {
 }
 
 .filter {
-  width: 100%;
+  width: 90%;
 }
 
 .btn {
@@ -28,6 +27,85 @@ a {
   float: right;
 }
 
+.mat-card {
+  margin: 5px;
+  height: 95%;
+  padding: 15px 0px 0px 0px;
+}
+
+.orders {
+  padding-top: 10px;
+  table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.orders td {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.orders th {
+  background: rgb(101, 100, 94);
+  border-radius: 5px;
+  color: white;
+  font-weight: 100;
+}
+
+.thText {
+  font-size: 60%;
+  padding: 8px 0;
+  text-align: center;
+}
+
+.orders td,
+.orders th {
+  text-align: left;
+  padding: 5px 10px;
+}
+
+.orders tr:nth-child(even) {
+  background: rgb(98, 120, 128);
+}
+
+.row-ID {
+  width: 40%;
+}
+
+.row-itemId {
+  width: 40%;
+}
+
+.row-quantity {
+  width: 40%;
+}
+
+.row-userId {
+  width: 40%;
+}
+
+.row-complete {
+  width: 40%;
+}
+
+.row-icon {
+  width: 20%;
+}
+
+.orderId {
+  border-bottom: lightgray dotted 1px;
+}
+.itemName {
+  border-bottom: lightgray dotted 1px;
+}
+
+.icons {
+  border-bottom: lightgray dotted 1px;
+}
+
 .iconsBttm {
   display: flex;
   flex-direction: row;
@@ -37,3 +115,4 @@ a {
 .deleteIcon {
   color: orangered;
 }
+

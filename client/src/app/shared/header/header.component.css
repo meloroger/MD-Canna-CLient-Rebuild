@@ -12,3 +12,8 @@ a {
   color: #fff;
   cursor: pointer;
 }
+
+.toggle {
+  margin-top: 7px;
+  padding-right: 15px;
+}

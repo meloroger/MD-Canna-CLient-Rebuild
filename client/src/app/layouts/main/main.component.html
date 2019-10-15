@@ -1,19 +1,5 @@
 <app-header flexLayout="column"></app-header>
 <div flexLayout="row" fxFlex>
-  <div *ngIf="isLoggedIn; then sideBar; else noSideBar"></div>
-  <ng-template #sideBar>
-    <div fxFlex="20">
-      <app-sidebar fxFlex></app-sidebar>
-    </div>
-    <div fxFlex="80">
-      <router-outlet></router-outlet>
-    </div>
-  </ng-template>
-  <ng-template #noSideBar>
-    <div fxFlex="0"></div>
-    <div fxFlex="100">
-      <router-outlet></router-outlet>
-    </div>
-  </ng-template>
+  <router-outlet></router-outlet>
 </div>
 <app-footer flexLayout="column"></app-footer>

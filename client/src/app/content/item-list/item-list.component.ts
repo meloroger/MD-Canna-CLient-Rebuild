@@ -1,9 +1,5 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {
-  MatTableDataSource,
-  MatDialog,
-  MatDialogConfig
-} from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { ItemCreateComponent } from './item-create/item-create.component';
 import { ItemFacade } from 'src/app/facades/item.facade';
@@ -37,9 +33,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'icon'];
-  dataSource: MatTableDataSource<Item>;
-
   itemVM$: Observable<ItemState>;
 
   constructor(
@@ -52,7 +45,7 @@ export class ItemListComponent implements OnInit {
   }
 
   applyFilter(filterValue: string): void {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    //this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   createHandler(): void {

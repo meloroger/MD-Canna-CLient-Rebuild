@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../model/user.interface';
@@ -17,6 +17,16 @@ export class AuthService {
   constructor(private http: HttpClient) {
     this.loadToken();
     this.loadUser();
+  }
+
+  getHeaders(): { headers: HttpHeaders } {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.getToken()
+      })
+    };
+    return httpOptions;
   }
 
   authenticateUser(authRequest: AuthRequest): Observable<User> {
@@ -59,14 +69,18 @@ export class AuthService {
     return this.isLoggedIn;
   }
 
-  logout() {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', this.authToken);
-    this.authToken = null;
-    this.user = null;
-    this.isLoggedIn = false;
-    localStorage.clear();
-    return this.http.post(`${environment.apiUrl}/user/logout`, { headers });
+  logout(): Observable<any> {
+    const headers = this.getHeaders();
+    console.log(headers);
+    return this.http
+      .post<any>(`${environment.apiUrl}/user/logout`, null, this.getHeaders())
+      .pipe(
+        tap(rsp => {
+          this.authToken = null;
+          this.user = null;
+          this.isLoggedIn = false;
+          localStorage.clear();
+        })
+      );
   }
 }

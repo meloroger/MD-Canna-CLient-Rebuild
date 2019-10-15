@@ -5,9 +5,10 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ContentModule } from '../content/content.module';
+import { AccessComponent } from './access/access.component';
 
 @NgModule({
-  declarations: [MainComponent],
+  declarations: [MainComponent, AccessComponent],
   imports: [
     CommonModule,
     RouterModule,
