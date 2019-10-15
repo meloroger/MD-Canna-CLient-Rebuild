@@ -1,4 +1,4 @@
-import { Order } from 'src/app/model/order.model';
+import { Order } from 'src/app/model/order.interface';
 import { Pagination } from 'src/app/model/pagination.interface';
 
 export interface OrderState {

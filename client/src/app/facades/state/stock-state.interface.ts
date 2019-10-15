@@ -1,4 +1,4 @@
-import { StockMovement } from 'src/app/model/stock-movement.model';
+import { StockMovement } from 'src/app/model/stock-movement.interface';
 import { Pagination } from 'src/app/model/pagination.interface';
 
 export interface StockState {

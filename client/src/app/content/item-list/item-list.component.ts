@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {
   MatTableDataSource,
   MatDialog,
-  MatDialogConfig,
+  MatDialogConfig
 } from '@angular/material';
-import { StockCreateComponent } from '../stock-list/stock-create/stock-create.component';
-import { StockEditComponent } from '../stock-list/stock-edit/stock-edit.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { ItemCreateComponent } from './item-create/item-create.component';
+import { ItemFacade } from 'src/app/facades/item.facade';
+import { Observable } from 'rxjs';
+import { ItemState } from 'src/app/facades/state/item-state.interface';
+import { Item } from 'src/app/model/item.interface';
 
 export interface PeriodicElement {
   name: string;
@@ -26,19 +28,30 @@ const ELEMENT_DATA: PeriodicElement[] = [
   { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
   { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
   { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' }
 ];
 
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
-  styleUrls: ['./item-list.component.css'],
+  styleUrls: ['./item-list.component.css']
 })
-export class ItemListComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'icon'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+export class ItemListComponent implements AfterViewInit {
+  displayedColumns: string[] = ['id', 'name', 'icon'];
+  dataSource: MatTableDataSource<Item>;
 
-  constructor(private dialog: MatDialog) {}
+  itemVM$: Observable<ItemState>;
+
+  constructor(
+    private dialog: MatDialog,
+    private readonly itemFacade: ItemFacade
+  ) {}
+
+  ngAfterViewInit() {
+    this.dataSource.data = this.itemFacade.getStateSnapshot().items;
+    const items: Item[] = [];
+    this.dataSource = new MatTableDataSource(items);
+  }
 
   applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();

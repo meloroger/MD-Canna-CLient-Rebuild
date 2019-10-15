@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../model/user.interface';
+import { AuthRequest } from '../dto/auth-request.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  authToken: any;
+  authToken: string;
   user: User;
   isLoggedIn: boolean;
 
@@ -18,11 +19,11 @@ export class AuthService {
     this.loadUser();
   }
 
-  authenticateUser(user: User): Observable<User> {
+  authenticateUser(authRequest: AuthRequest): Observable<User> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http
-      .post<User>(`${environment.apiUrl}/user/login`, user, {
+      .post<User>(`${environment.apiUrl}/user/login`, authRequest, {
         headers
       })
       .pipe(tap(data => (this.user = data)));
