@@ -36,7 +36,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.css']
 })
-export class ItemListComponent implements AfterViewInit {
+export class ItemListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'icon'];
   dataSource: MatTableDataSource<Item>;
 
@@ -47,10 +47,8 @@ export class ItemListComponent implements AfterViewInit {
     private readonly itemFacade: ItemFacade
   ) {}
 
-  ngAfterViewInit() {
-    this.dataSource.data = this.itemFacade.getStateSnapshot().items;
-    const items: Item[] = [];
-    this.dataSource = new MatTableDataSource(items);
+  ngOnInit() {
+    this.itemVM$ = this.itemFacade.vm$;
   }
 
   applyFilter(filterValue: string): void {
