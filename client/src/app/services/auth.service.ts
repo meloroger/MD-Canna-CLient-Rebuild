@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../model/user.interface';
 import { AuthRequest } from '../dto/auth-request.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,10 @@ export class AuthService {
   user: User;
   isLoggedIn: boolean;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private readonly http: HttpClient,
+    private readonly router: Router
+  ) {
     this.loadToken();
     this.loadUser();
   }
@@ -70,17 +74,15 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    const headers = this.getHeaders();
-    console.log(headers);
-    return this.http
-      .post<any>(`${environment.apiUrl}/user/logout`, null, this.getHeaders())
-      .pipe(
-        tap(rsp => {
-          this.authToken = null;
-          this.user = null;
-          this.isLoggedIn = false;
-          localStorage.clear();
-        })
-      );
+    this.authToken = null;
+    this.user = null;
+    this.isLoggedIn = false;
+    localStorage.clear();
+    this.router.navigate(['/']);
+    return this.http.post<any>(
+      `${environment.apiUrl}/user/logout`,
+      null,
+      this.getHeaders()
+    );
   }
 }

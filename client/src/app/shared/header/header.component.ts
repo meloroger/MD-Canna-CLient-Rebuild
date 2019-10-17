@@ -46,9 +46,7 @@ export class HeaderComponent {
   }
 
   logoutHandler(): void {
-    this.authService.logout().subscribe(() => {
-      this.router.navigate(this.loggedIn ? ['/welcome'] : ['/']);
-    });
+    this.authService.logout();
   }
 
   showMenu(): void {

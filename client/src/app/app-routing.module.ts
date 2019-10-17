@@ -12,6 +12,7 @@ import { ItemListComponent } from './content/item-list/item-list.component';
 import { StockListComponent } from './content/stock-list/stock-list.component';
 import { LiveFeedComponent } from './content/live-feed/live-feed.component';
 import { AccessComponent } from './layouts/access/access.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -27,38 +28,47 @@ const routes: Routes = [
   {
     path: 'welcome',
     component: AccessComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'orders',
-        component: OrderListComponent
+        component: OrderListComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'employees',
-        component: EmployeeListComponent
+        component: EmployeeListComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'items',
-        component: ItemListComponent
+        component: ItemListComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'stock',
-        component: StockListComponent
+        component: StockListComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'live-feed',
-        component: LiveFeedComponent
+        component: LiveFeedComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },
