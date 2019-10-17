@@ -10,10 +10,10 @@
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: #ccc;
 }
 
 .active {
   font-style: italic;
-  color: #ccc;
+  color: #fff;
 }

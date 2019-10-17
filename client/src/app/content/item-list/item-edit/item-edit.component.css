@@ -1,0 +1,13 @@
+.mat-form-field {
+  width: 100%;
+}
+
+.registerBtns {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 10px;
+}
+
+.btn {
+  width: 40%;
+}

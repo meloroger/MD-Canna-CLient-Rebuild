@@ -7,26 +7,6 @@ import { Observable } from 'rxjs';
 import { ItemState } from 'src/app/facades/state/item-state.interface';
 import { Item } from 'src/app/model/item.interface';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' }
-];
-
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
@@ -56,8 +36,9 @@ export class ItemListComponent implements OnInit {
     this.dialog.open(ItemCreateComponent, dialogConfig);
   }
 
-  editHandler(order: object): void {
+  editHandler(item: Item): void {
     const dialogConfig = new MatDialogConfig();
+    this.itemFacade.selectItem(item);
     // dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
@@ -65,6 +46,6 @@ export class ItemListComponent implements OnInit {
   }
 
   deleteHandler(id: string): void {
-    console.log(id);
+    this.itemFacade.deleteItem(id);
   }
 }

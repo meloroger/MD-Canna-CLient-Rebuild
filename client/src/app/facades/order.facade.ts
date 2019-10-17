@@ -5,6 +5,7 @@ import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { OrderService } from 'src/app/services/order.service';
 import { Pagination } from 'src/app/model/pagination.interface';
 import { Order } from 'src/app/model/order.interface';
+import { OrderRequest } from '../dto/order-request.interface';
 
 @Injectable()
 export class OrderFacade {
@@ -109,11 +110,11 @@ export class OrderFacade {
     });
   }
 
-  updateOrder(order: Order): void {
-    this.orderService.updateOrder(order).subscribe(ordr => {
+  updateOrder(orderRequest: OrderRequest): void {
+    this.orderService.updateOrder(orderRequest).subscribe(ordr => {
       this.updateState({
         ...this.state,
-        orders: this.state.orders.filter(o => o.id !== order.id).concat(order),
+        orders: this.state.orders.filter(o => o.id !== orderRequest.id).concat(ordr),
         loading: false
       });
     });

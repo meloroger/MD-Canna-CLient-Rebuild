@@ -5,11 +5,13 @@ import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { ItemService } from '../services/item.service';
 import { Pagination } from '../model/pagination.interface';
 import { Item } from '../model/item.interface';
+import { ItemRequest } from '../dto/item-request.interface';
 
 @Injectable()
 export class ItemFacade {
   private state: ItemState = {
     items: [],
+    selectedItem: null,
     criteria: 'Enter Search...',
     pagination: {
       currentPage: 0,
@@ -26,6 +28,10 @@ export class ItemFacade {
     map(state => state.items),
     distinctUntilChanged()
   );
+  selectedItem$ = this.state$.pipe(
+    map(state => state.selectedItem),
+    distinctUntilChanged()
+  );
   criteria$ = this.state$.pipe(
     map(state => state.criteria),
     distinctUntilChanged()
@@ -38,12 +44,13 @@ export class ItemFacade {
 
   vm$: Observable<ItemState> = combineLatest(
     this.items$,
+    this.selectedItem$,
     this.pagination$,
     this.criteria$,
     this.loading$
   ).pipe(
-    map(([items, pagination, criteria, loading]) => {
-      return { items, pagination, criteria, loading };
+    map(([items, selectedItem, pagination, criteria, loading]) => {
+      return { items, selectedItem, pagination, criteria, loading };
     })
   );
 
@@ -74,8 +81,16 @@ export class ItemFacade {
     return this.itemService.fetchAllItems();
   }
 
-  createItem(item: Item) {
-    return this.itemService.createItem(item).subscribe(itm => {
+  selectItem(item: Item): void {
+    this.updateState({
+      ...this.state,
+      selectedItem: item,
+      loading: false
+    });
+  }
+
+  createItem(itemRequest: ItemRequest) {
+    return this.itemService.createItem(itemRequest).subscribe(itm => {
       this.updateState({
         ...this.state,
         items: [...this.state.items, itm],
@@ -94,11 +109,13 @@ export class ItemFacade {
     });
   }
 
-  updateItem(item: Item) {
-    return this.itemService.updateItem(item).subscribe(itm =>
+  updateItem(itemRequest: ItemRequest) {
+    return this.itemService.updateItem(itemRequest).subscribe(itm =>
       this.updateState({
         ...this.state,
-        items: this.state.items.filter(i => i.id !== item.id).concat(item),
+        items: this.state.items
+          .filter(i => i.id !== itemRequest.id)
+          .concat(itm),
         loading: false
       })
     );

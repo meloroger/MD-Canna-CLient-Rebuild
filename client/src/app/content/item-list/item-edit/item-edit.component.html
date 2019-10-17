@@ -1,1 +1,48 @@
-<p>item-edit works!</p>
+<h2>Edit Item</h2>
+<ng-container *ngIf="selectedItem$ | async as selectedItem">
+  <div class="register">
+    <form [formGroup]="editForm" (ngSubmit)="submitEdit()">
+      <div flexLayout="column">
+        <mat-form-field appearance="outline">
+          <mat-label>ID</mat-label>
+          <input matInput value="{{ selectedItem.id }}" formControlName="id" />
+          <mat-icon matSuffix>edit</mat-icon>
+          <mat-hint>Confirm exact ID</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            placeholder="{{ selectedItem.name }}"
+            formControlName="name"
+          />
+          <mat-icon matSuffix>edit</mat-icon>
+          <mat-hint>Enter First Name of Item</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <mat-divider></mat-divider>
+      <div class="registerBtns">
+        <button
+          type="submit"
+          [disabled]="editForm.invalid"
+          mat-raised-button
+          color="primary"
+          class="btn"
+        >
+          Submit
+        </button>
+
+        <button
+          type="button"
+          class="btn"
+          (click)="cancelAction()"
+          mat-flat-button
+          color="warn"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-container>

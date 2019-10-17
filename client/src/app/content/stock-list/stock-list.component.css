@@ -87,6 +87,10 @@ a {
   width: 20%;
 }
 
+.stockId {
+  border-bottom: lightgray dotted 1px;
+}
+
 .itemId {
   border-bottom: lightgray dotted 1px;
 }
@@ -95,6 +99,7 @@ a {
 }
 
 .quantity {
+  text-align: center !important;
   border-bottom: lightgray dotted 1px;
 }
 
@@ -111,43 +116,3 @@ a {
 .deleteIcon {
   color: orangered;
 }
-
-/* table {
-  width: 100%;
-}
-
-a {
-  cursor: pointer;
-}
-
-.topFilterBtn {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-stocks: center;
-}
-
-.filter {
-  width: 100%;
-}
-
-.btn {
-  padding-left: 20px;
-}
-
-.mat-form-field {
-  font-size: 14px;
-  width: 80%;
-  float: right;
-}
-
-.iconsBttm {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.deleteIcon {
-  color: orangered;
-}
- */

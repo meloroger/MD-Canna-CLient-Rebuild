@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ItemFacade } from 'src/app/facades/item.facade';
+import { MatDialogRef } from '@angular/material';
+import { ItemRequest } from 'src/app/dto/item-request.interface';
 
 @Component({
   selector: 'app-item-create',
@@ -6,10 +10,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item-create.component.css']
 })
 export class ItemCreateComponent implements OnInit {
+  createForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private readonly itemFacade: ItemFacade,
+    private dialogRef: MatDialogRef<ItemCreateComponent>
+  ) {}
 
   ngOnInit() {
+    this.createForm = this.formBuilder.group({
+      name: ['', [Validators.required]]
+    });
   }
 
+  submitCreate() {
+    const itemRequest: ItemRequest = this.createForm.value;
+    this.itemFacade.createItem(itemRequest);
+    this.dialogRef.close();
+  }
+
+  cancelAction() {
+    this.dialogRef.close();
+  }
 }

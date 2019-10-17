@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Order } from '../model/order.interface';
 import { AuthService } from './auth.service';
-import { tap, subscribeOn } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { OrderRequest } from '../dto/order-request.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +30,17 @@ export class OrderService {
   }
 
   createOrder(order: Order): Observable<Order> {
+    const user = this.authService.loadUser();
+    const orderRequest = {
+      ...order,
+      userId: user.id,
+      complete: false
+    };
+    console.log(order);
     return this.http
       .post<Order>(
         `${environment.apiUrl}/order/create`,
-        order,
+        orderRequest,
         this.getHeaders()
       )
       .pipe(tap(data => console.log(data)));
@@ -45,10 +53,11 @@ export class OrderService {
     );
   }
 
-  updateOrder(order: Order): Observable<Order> {
-    return this.http.put<Order>(
+  updateOrder(orderRequest: OrderRequest): Observable<Order> {
+    console.log(orderRequest);
+    return this.http.put<OrderRequest>(
       `${environment.apiUrl}/order/update`,
-      order,
+      orderRequest,
       this.getHeaders()
     );
   }

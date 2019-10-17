@@ -23,6 +23,7 @@ import { StockListComponent } from './stock-list/stock-list.component';
 import { StockEditComponent } from './stock-list/stock-edit/stock-edit.component';
 import { StockCreateComponent } from './stock-list/stock-create/stock-create.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { HttpClientModule } from '@angular/common/http';
     StockListComponent,
     StockEditComponent,
     StockCreateComponent,
-    LiveFeedComponent,
+    LiveFeedComponent
   ],
   imports: [
     CommonModule,
@@ -53,13 +54,14 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FlexLayoutModule
   ],
   exports: [
     DashboardComponent,
     HomeComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent,
+    RegisterComponent
   ],
   entryComponents: [
     OrderEditComponent,
@@ -68,6 +70,8 @@ import { HttpClientModule } from '@angular/common/http';
     EmployeeEditComponent,
     ItemCreateComponent,
     ItemEditComponent,
-  ],
+    StockCreateComponent,
+    StockEditComponent
+  ]
 })
 export class ContentModule {}

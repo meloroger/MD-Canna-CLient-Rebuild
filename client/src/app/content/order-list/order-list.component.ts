@@ -5,6 +5,7 @@ import { OrderCreateComponent } from './order-create/order-create.component';
 import { OrderFacade } from 'src/app/facades/order.facade';
 import { Observable } from 'rxjs';
 import { OrderState } from 'src/app/facades/state/order-state.interface';
+import { Order } from 'src/app/model/order.interface';
 
 @Component({
   selector: 'app-order-list',
@@ -35,8 +36,9 @@ export class OrderListComponent implements OnInit {
     this.dialog.open(OrderCreateComponent, dialogConfig);
   }
 
-  editHandler(order: object): void {
+  editHandler(order: Order): void {
     const dialogConfig = new MatDialogConfig();
+    this.orderFacade.selectOrder(order);
     // dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
@@ -44,6 +46,6 @@ export class OrderListComponent implements OnInit {
   }
 
   deleteHandler(id: string): void {
-    console.log(id);
+    this.orderFacade.deleteOrder(id);
   }
 }

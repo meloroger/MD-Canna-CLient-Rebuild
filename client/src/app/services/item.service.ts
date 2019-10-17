@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Item } from '../model/item.interface';
 import { environment } from 'src/environments/environment';
+import { ItemRequest } from '../dto/item-request.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -28,23 +29,28 @@ export class ItemService {
     );
   }
 
-  createItem(item: Item): Observable<Item> {
+  createItem(itemRequest: ItemRequest): Observable<Item> {
     return this.http
-      .post<Item>(`${environment.apiUrl}/items/create`, item, this.getHeaders())
+      .post<Item>(
+        `${environment.apiUrl}/items/create`,
+        itemRequest,
+        this.getHeaders()
+      )
       .pipe();
   }
 
   deleteItem(id: string): Observable<Item> {
     return this.http.delete<Item>(
-      `${environment.apiUrl}/items/delete`,
+      `${environment.apiUrl}/items/delete/${id}`,
       this.getHeaders()
     );
   }
 
-  updateItem(item: Item): Observable<Item> {
+  updateItem(itemRequest: ItemRequest): Observable<Item> {
+    console.log(itemRequest);
     return this.http.put<Item>(
       `${environment.apiUrl}/items/update`,
-      item,
+      itemRequest,
       this.getHeaders()
     );
   }

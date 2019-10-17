@@ -1,1 +1,85 @@
-<p>order-edit works!</p>
+<ng-container *ngIf="selectedOrder$ | async as selectedOrder">
+  <h2>Edit Order</h2>
+  <div class="order-form">
+    <form [formGroup]="editForm" (ngSubmit)="submitEdit()" class="form-style">
+      <div flexLayout="row" fxFlex>
+        <div fxFlex="50">
+          <mat-form-field appearance="outline">
+            <mat-label>ID</mat-label>
+            <input
+              matInput
+              value="{{ selectedOrder.id }}"
+              formControlName="id"
+            />
+            <mat-icon matSuffix>edit</mat-icon>
+            <mat-hint>Confirm exact ID</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Item ID</mat-label>
+            <input
+              matInput
+              value="{{ selectedOrder.itemId }}"
+              formControlName="itemId"
+            />
+            <mat-icon matSuffix>edit</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Quantity</mat-label>
+            <input
+              matInput
+              value="{{ selectedOrder.quantity }}"
+              formControlName="quantity"
+            />
+            <mat-icon matSuffix>edit</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50">
+          <mat-form-field appearance="outline">
+            <mat-label>User ID</mat-label>
+            <input
+              matInput
+              value="{{ selectedOrder.userId }}"
+              formControlName="userId"
+            />
+            <mat-icon matSuffix>edit</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Completed</mat-label>
+            <input
+              matInput
+              value="{{ selectedOrder.complete }}"
+              formControlName="complete"
+            />
+            <mat-icon matSuffix>edit</mat-icon>
+          </mat-form-field>
+          
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div flexLayout="column" fxFlex>
+        <div class="registerBtns">
+          <button
+            type="submit"
+            [disabled]="editForm.invalid"
+            mat-raised-button
+            color="primary"
+            class="btn"
+          >
+            Submit
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="cancelAction()"
+            mat-flat-button
+            color="warn"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-container>

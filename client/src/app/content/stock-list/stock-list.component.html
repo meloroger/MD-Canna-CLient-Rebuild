@@ -1,4 +1,4 @@
-<ng-container *ngIf="stockVM$ | async as vm">
+<ng-container *ngIf="stockMovements$ | async as stocks">
   <mat-card>
     <mat-card-title>Stock Movement List</mat-card-title>
     <div class="topFilterBtn">
@@ -39,7 +39,7 @@
           <th class="row-3 row-icon"></th>
         </tr>
       </thead>
-      <tbody *ngFor="let stock of vm.stocks">
+      <tbody *ngFor="let stock of stocks">
         <tr>
           <td class="stockId">
             {{ stock.id }}

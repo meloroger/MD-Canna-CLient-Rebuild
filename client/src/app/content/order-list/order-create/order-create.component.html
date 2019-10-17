@@ -1,1 +1,54 @@
-<p>order-create works!</p>
+<ng-container *ngIf="items$ | async as items">
+  <h2>Create Order</h2>
+  <div class="order-form">
+    <form
+      [formGroup]="createForm"
+      (ngSubmit)="submitCreate()"
+      class="form-style"
+    >
+      <div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Item</mat-label>
+            <!-- <input matInput formControlName="itemId" /> -->
+            <mat-select formControlName="itemId">
+              <mat-option *ngFor="let item of items" [value]="item.id">
+                {{ item.name }}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>edit</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Quantity</mat-label>
+            <input matInput formControlName="quantity" />
+            <mat-icon matSuffix>edit</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div>
+        <div class="registerBtns">
+          <button
+            type="submit"
+            [disabled]="createForm.invalid"
+            mat-raised-button
+            color="primary"
+            class="btn"
+          >
+            Submit
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="cancelAction()"
+            mat-flat-button
+            color="warn"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-container>

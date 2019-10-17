@@ -98,7 +98,11 @@ a {
 .orderId {
   border-bottom: lightgray dotted 1px;
 }
-.itemName {
+.itemId {
+  border-bottom: lightgray dotted 1px;
+}
+
+.userId {
   border-bottom: lightgray dotted 1px;
 }
 
@@ -112,7 +116,16 @@ a {
   justify-content: space-evenly;
 }
 
+.quantity {
+  text-align: center !important;
+  border-bottom: lightgray dotted 1px;
+}
+
+.complete {
+  text-align: center !important;
+  border-bottom: lightgray dotted 1px;
+}
+
 .deleteIcon {
   color: orangered;
 }
-
