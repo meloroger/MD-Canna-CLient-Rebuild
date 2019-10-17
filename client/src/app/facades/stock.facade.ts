@@ -5,6 +5,7 @@ import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { StockService } from 'src/app/services/stock.service';
 import { StockMovement } from 'src/app/model/stock-movement.interface';
 import { Pagination } from 'src/app/model/pagination.interface';
+import { StockRequest } from '../dto/stock-request.interface';
 
 @Injectable()
 export class StockFacade {
@@ -88,8 +89,8 @@ export class StockFacade {
     });
   }
 
-  createStockMovement(stockMovement: StockMovement): void {
-    this.stockService.createStockMovement(stockMovement).subscribe(stock =>
+  createStockMovement(stockRequest: StockRequest): void {
+    this.stockService.createStockMovement(stockRequest).subscribe(stock =>
       this.updateState({
         ...this.state,
         stockMovements: [...this.state.stockMovements, stock],

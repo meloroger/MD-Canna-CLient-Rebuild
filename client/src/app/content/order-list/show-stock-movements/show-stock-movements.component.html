@@ -1,0 +1,59 @@
+<ng-container *ngIf="selectedOrder$ | async as order">
+  <mat-card>
+    <mat-card-title>Stock Movement List</mat-card-title>
+    <div class="topFilterBtn">
+      <div class="filter">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter()" placeholder="Search..." />
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <table class="stocks">
+      <thead>
+        <tr>
+          <th class="row-1 row-ID">
+            <div class="thText">
+              ID
+            </div>
+          </th>
+          <th class="row-2 row-name">
+            <div class="thText">
+              Quantity
+            </div>
+          </th>
+          <th class="row-2 row-date">
+            <div class="thText">
+              Date
+            </div>
+          </th>
+          <!-- <th class="row-3 row-icon"></th> -->
+        </tr>
+      </thead>
+      <tbody *ngFor="let stock of order.stockMovements">
+        <tr>
+          <td class="stockId">
+            {{ stock.id }}
+          </td>
+          <td class="quantity">{{ stock.quantity }}</td>
+          <td class="date">{{ stock.date | date }}</td>
+          <!-- <td class="icons">
+                <div class="iconsBttm">
+                  <div>
+                    <a (click)="editHandler(item)">
+                      <mat-icon matSuffix>input</mat-icon>
+                    </a>
+                  </div>
+                  <div class="deleteIcon">
+                    <a (click)="deleteHandler(item.id)">
+                      <mat-icon matSuffix>delete_outline</mat-icon>
+                    </a>
+                  </div>
+                </div>
+              </td> -->
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator></mat-paginator>
+  </mat-card>
+</ng-container>

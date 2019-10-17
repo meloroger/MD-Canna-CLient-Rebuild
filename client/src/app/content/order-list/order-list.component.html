@@ -26,32 +26,42 @@
               ID
             </div>
           </th>
-          <th class="row-2 row-itemId">
+          <th class="row-2 row-stocks">
+            <div class="thText">
+              Stock Mvnts
+            </div>
+          </th>
+          <th class="row-3 row-itemId">
             <div class="thText">
               Item ID
             </div>
           </th>
-          <th class="row-3 row-quantity">
+          <th class="row-4 row-quantity">
             <div class="thText">
               Quantity
             </div>
           </th>
-          <th class="row-4 row-userId">
+          <th class="row-5 row-userId">
             <div class="thText">
               User ID
             </div>
           </th>
-          <th class="row-5 row-complete">
+          <th class="row-6 row-complete">
             <div class="thText">
               Completed
             </div>
           </th>
-          <th class="row-5 row-complete"></th>
+          <th class="row-7 row-complete"></th>
         </tr>
       </thead>
       <tbody *ngFor="let order of vm.orders">
         <tr>
           <td class="orderId">{{ order.id }}</td>
+          <td class="stocks">
+            <a (click)="showStockMovements(order)">
+              <mat-icon>view_list</mat-icon>
+            </a>
+          </td>
           <td class="itemId">{{ order.itemId }}</td>
           <td class="quantity">{{ order.quantity }}</td>
           <td class="userId">{{ order.userId }}</td>

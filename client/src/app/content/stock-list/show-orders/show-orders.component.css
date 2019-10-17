@@ -33,7 +33,7 @@ a {
   padding: 15px 0px 0px 0px;
 }
 
-.stocks {
+.orders {
   padding-top: 10px;
   table-layout: fixed;
   width: 100%;
@@ -41,14 +41,14 @@ a {
   margin: 0;
 }
 
-.stocks td {
+.orders td {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.stocks th {
+.orders th {
   background: rgb(101, 100, 94);
   border-radius: 5px;
   color: white;
@@ -61,53 +61,36 @@ a {
   text-align: center;
 }
 
-.stocks td,
-.stocks th {
+.orders td,
+.orders th {
   text-align: left;
   padding: 5px 10px;
 }
 
-.stocks tr:nth-child(even) {
+.orders tr:nth-child(even) {
   background: rgb(98, 120, 128);
 }
 
 .row-ID {
-  width: 25%;
-}
-
-.row-orders {
-  width: 10%;
-}
-
-.row-itemId {
-  width: 25%;
+  width: 40%;
 }
 
 .row-quantity {
-  width: 25%;
+  width: 40%;
+}
+
+.date {
+  width: 40%;
 }
 
 .row-icon {
-  width: 15%;
+  width: 20%;
 }
 
-.stockId {
+.orderId {
   border-bottom: lightgray dotted 1px;
 }
-
-.itemId {
-  border-bottom: lightgray dotted 1px;
-}
-.itemName {
-  border-bottom: lightgray dotted 1px;
-}
-
 .quantity {
-  text-align: center !important;
-  border-bottom: lightgray dotted 1px;
-}
-
-.orders {
   text-align: center !important;
   border-bottom: lightgray dotted 1px;
 }

@@ -1,27 +1,24 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { RegisterComponent } from '../../content/register/register.component';
 import { LoginComponent } from '../../content/login/login.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { SidebarComponent } from '../sidebar/sidebar.component';
-import { AccessComponent } from 'src/app/layouts/access/access.component';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   menu: boolean;
   @Output() sideMenu = new EventEmitter();
+
   constructor(
-    private dialog: MatDialog,
+    private readonly dialog: MatDialog,
     private readonly authService: AuthService,
     private readonly router: Router
   ) {}
-
-  ngOnInit() {}
 
   loggedIn(): boolean {
     return this.authService.loggedIn();
@@ -32,7 +29,7 @@ export class HeaderComponent implements OnInit {
     return user.fullName;
   }
 
-  registerHandler() {
+  registerHandler(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -40,7 +37,7 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(RegisterComponent, dialogConfig);
   }
 
-  loginHandler() {
+  loginHandler(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -48,14 +45,13 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(LoginComponent, dialogConfig);
   }
 
-  logoutHandler() {
-    this.authService.logout().subscribe(rsp => {
-      this.router.navigate(['/']);
-      console.log(rsp);
+  logoutHandler(): void {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(this.loggedIn ? ['/welcome'] : ['/']);
     });
   }
 
-  showMenu() {
+  showMenu(): void {
     this.menu = !this.menu;
     this.sideMenu.emit(this.menu);
   }

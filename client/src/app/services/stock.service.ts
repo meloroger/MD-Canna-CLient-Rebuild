@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { StockMovement } from '../model/stock-movement.interface';
 import { environment } from 'src/environments/environment';
+import { StockRequest } from '../dto/stock-request.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +29,10 @@ export class StockService {
     );
   }
 
-  createStockMovement(stockMovement: StockMovement): Observable<StockMovement> {
-    return this.http.post<StockMovement>(
+  createStockMovement(stockRequest: StockRequest): Observable<StockMovement> {
+    return this.http.post<StockRequest>(
       `${environment.apiUrl}/stock/create`,
-      stockMovement,
+      stockRequest,
       this.getHeaders()
     );
   }

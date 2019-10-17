@@ -26,23 +26,33 @@
               ID
             </div>
           </th>
-          <th class="row-2 row-itemId">
+          <th class="row-2 row-orders">
+            <div class="thText">
+              Orders
+            </div>
+          </th>
+          <th class="row-3 row-itemId">
             <div class="thText">
               Item Id
             </div>
           </th>
-          <th class="row-2 row-quantity">
+          <th class="row-4 row-quantity">
             <div class="thText">
               Quantity
             </div>
           </th>
-          <th class="row-3 row-icon"></th>
+          <th class="row-5 row-icon"></th>
         </tr>
       </thead>
       <tbody *ngFor="let stock of stocks">
         <tr>
           <td class="stockId">
             {{ stock.id }}
+          </td>
+          <td class="orders">
+            <a (click)="showOrdersHandler(stock)">
+              <mat-icon matSuffix>view_list</mat-icon>
+            </a>
           </td>
           <td class="itemId">{{ stock.itemId }}</td>
           <td class="quantity">{{ stock.quantity }}</td>

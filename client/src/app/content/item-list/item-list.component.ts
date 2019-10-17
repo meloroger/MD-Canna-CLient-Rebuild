@@ -30,7 +30,7 @@ export class ItemListComponent implements OnInit {
 
   createHandler(): void {
     const dialogConfig = new MatDialogConfig();
-    // dialogConfig.disableClose = true;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     this.dialog.open(ItemCreateComponent, dialogConfig);
@@ -39,7 +39,7 @@ export class ItemListComponent implements OnInit {
   editHandler(item: Item): void {
     const dialogConfig = new MatDialogConfig();
     this.itemFacade.selectItem(item);
-    // dialogConfig.disableClose = true;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     this.dialog.open(ItemEditComponent, dialogConfig);

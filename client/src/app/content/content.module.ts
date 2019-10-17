@@ -24,6 +24,8 @@ import { StockEditComponent } from './stock-list/stock-edit/stock-edit.component
 import { StockCreateComponent } from './stock-list/stock-create/stock-create.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ShowOrdersComponent } from './stock-list/show-orders/show-orders.component';
+import { ShowStockMovementsComponent } from './order-list/show-stock-movements/show-stock-movements.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     StockListComponent,
     StockEditComponent,
     StockCreateComponent,
-    LiveFeedComponent
+    LiveFeedComponent,
+    ShowOrdersComponent,
+    ShowStockMovementsComponent
   ],
   imports: [
     CommonModule,
@@ -71,7 +75,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ItemCreateComponent,
     ItemEditComponent,
     StockCreateComponent,
-    StockEditComponent
+    StockEditComponent,
+    ShowOrdersComponent,
+    ShowStockMovementsComponent
   ]
 })
 export class ContentModule {}

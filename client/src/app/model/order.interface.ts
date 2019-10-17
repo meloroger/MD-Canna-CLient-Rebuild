@@ -6,4 +6,5 @@ export interface Order {
   quantity: number;
   userId: string;
   complete: boolean;
+  stockMovements?: StockMovement[];
 }

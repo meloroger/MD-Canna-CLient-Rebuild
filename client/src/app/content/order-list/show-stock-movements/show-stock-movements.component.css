@@ -72,42 +72,25 @@ a {
 }
 
 .row-ID {
-  width: 25%;
-}
-
-.row-orders {
-  width: 10%;
-}
-
-.row-itemId {
-  width: 25%;
+  width: 40%;
 }
 
 .row-quantity {
-  width: 25%;
+  width: 40%;
+}
+
+.date {
+  width: 40%;
 }
 
 .row-icon {
-  width: 15%;
+  width: 20%;
 }
 
 .stockId {
   border-bottom: lightgray dotted 1px;
 }
-
-.itemId {
-  border-bottom: lightgray dotted 1px;
-}
-.itemName {
-  border-bottom: lightgray dotted 1px;
-}
-
 .quantity {
-  text-align: center !important;
-  border-bottom: lightgray dotted 1px;
-}
-
-.orders {
   text-align: center !important;
   border-bottom: lightgray dotted 1px;
 }

@@ -5,6 +5,7 @@ import { StockEditComponent } from './stock-edit/stock-edit.component';
 import { Observable } from 'rxjs';
 import { StockFacade } from 'src/app/facades/stock.facade';
 import { StockMovement } from 'src/app/model/stock-movement.interface';
+import { ShowOrdersComponent } from './show-orders/show-orders.component';
 
 @Component({
   selector: 'app-stock-list',
@@ -29,23 +30,32 @@ export class StockListComponent implements OnInit {
 
   createHandler(): void {
     const dialogConfig = new MatDialogConfig();
-    // dialogConfig.disableClose = true;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     this.dialog.open(StockCreateComponent, dialogConfig);
   }
 
+  showOrdersHandler(stock: StockMovement): void {
+    console.log('clicked');
+    const dialogConfig = new MatDialogConfig();
+    this.stockFacade.selectStockMovement(stock);
+    //dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '60%';
+    this.dialog.open(ShowOrdersComponent, dialogConfig);
+  }
+
   editHandler(stock: StockMovement): void {
     const dialogConfig = new MatDialogConfig();
     this.stockFacade.selectStockMovement(stock);
-    // dialogConfig.disableClose = true;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     this.dialog.open(StockEditComponent, dialogConfig);
   }
 
   deleteHandler(id: string): void {
-    console.log(id);
     this.stockFacade.removeStockMovement(id);
   }
 }

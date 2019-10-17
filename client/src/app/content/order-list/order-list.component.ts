@@ -6,6 +6,7 @@ import { OrderFacade } from 'src/app/facades/order.facade';
 import { Observable } from 'rxjs';
 import { OrderState } from 'src/app/facades/state/order-state.interface';
 import { Order } from 'src/app/model/order.interface';
+import { ShowStockMovementsComponent } from './show-stock-movements/show-stock-movements.component';
 
 @Component({
   selector: 'app-order-list',
@@ -30,16 +31,25 @@ export class OrderListComponent implements OnInit {
 
   createHandler(): void {
     const dialogConfig = new MatDialogConfig();
-    // dialogConfig.disableClose = true;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     this.dialog.open(OrderCreateComponent, dialogConfig);
   }
 
+  showStockMovements(order: Order) {
+    const dialogConfig = new MatDialogConfig();
+    this.orderFacade.selectOrder(order);
+    //dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '60%';
+    this.dialog.open(ShowStockMovementsComponent, dialogConfig);
+  }
+
   editHandler(order: Order): void {
     const dialogConfig = new MatDialogConfig();
     this.orderFacade.selectOrder(order);
-    // dialogConfig.disableClose = true;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     this.dialog.open(OrderEditComponent, dialogConfig);
