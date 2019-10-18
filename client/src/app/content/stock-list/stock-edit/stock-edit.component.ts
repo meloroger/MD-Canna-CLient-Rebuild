@@ -27,19 +27,28 @@ export class StockEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.selectedStock$ = this.stockFacade.selectedStock$;
+    this.editForm = this.formBuilder.group({
+      id: ['', [Validators.required]],
+      itemId: ['', [Validators.required]],
+      quantity: ['', [Validators.required]]
+    });
+    this.selectedStock$ = this.stockFacade.selectedStock$.pipe(
+      map(stock => {
+        this.editForm.setValue({
+          id: stock.id,
+          itemId: stock.itemId,
+          quantity: stock.quantity
+        });
+        return stock;
+      })
+    );
+
     this.items$ = this.itemFacade.items$;
     this.vm$ = combineLatest(this.selectedStock$, this.items$).pipe(
       map(([selectedStock, items]) => {
         return { selectedStock, items };
       })
     );
-
-    this.editForm = this.formBuilder.group({
-      id: ['', [Validators.required]],
-      itemId: ['', [Validators.required]],
-      quantity: ['', [Validators.required]]
-    });
   }
 
   submitEdit() {

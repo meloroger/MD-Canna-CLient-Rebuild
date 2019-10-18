@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { OrderState } from './state/order-state.interface';
 import { BehaviorSubject, Observable, combineLatest, Subscription } from 'rxjs';
 import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { OrderService } from 'src/app/services/order.service';
 import { Pagination } from 'src/app/model/pagination.interface';
 import { Order } from 'src/app/model/order.interface';
 import { OrderRequest } from '../dto/order-request.interface';
+import { StockFacade } from './stock.facade';
 
 @Injectable()
 export class OrderFacade {
@@ -54,7 +55,10 @@ export class OrderFacade {
     })
   );
 
-  constructor(private orderService: OrderService) {
+  constructor(
+    private readonly orderService: OrderService,
+    private readonly stockFacade: StockFacade
+  ) {
     combineLatest(this.criteria$, this.pagination$)
       .pipe(
         switchMap(([criteria, pagination]) => {
@@ -90,14 +94,15 @@ export class OrderFacade {
     console.log(this.state.selectedOrder);
   }
 
-  createOrder(order: Order): void {
-    this.orderService.createOrder(order).subscribe(ordr =>
+  createOrder(orderRequest: Order): void {
+    this.orderService.createOrder(orderRequest).subscribe(ordr => {
+      this.stockFacade.refreshState();
       this.updateState({
         ...this.state,
         orders: [...this.state.orders, ordr],
         loading: false
-      })
-    );
+      });
+    });
   }
 
   deleteOrder(id: string): void {
@@ -111,10 +116,17 @@ export class OrderFacade {
   }
 
   updateOrder(orderRequest: OrderRequest): void {
+    orderRequest = {
+      ...orderRequest,
+      stockMovements: this.state.selectedOrder.stockMovements
+    };
+    console.log(orderRequest);
     this.orderService.updateOrder(orderRequest).subscribe(ordr => {
       this.updateState({
         ...this.state,
-        orders: this.state.orders.filter(o => o.id !== orderRequest.id).concat(ordr),
+        orders: this.state.orders
+          .filter(o => o.id !== orderRequest.id)
+          .concat(ordr),
         loading: false
       });
     });

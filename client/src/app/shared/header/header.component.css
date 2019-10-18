@@ -1,3 +1,8 @@
+.mat-toolbar {
+  background: black;
+  font-family: cursive;
+}
+
 .spacer {
   flex: auto;
 }

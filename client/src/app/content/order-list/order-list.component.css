@@ -2,8 +2,19 @@ a {
   cursor: pointer;
 }
 
+.info {
+  color: red;
+  font-size: 50%;
+  text-align: center;
+}
+
 .mat-card-title {
   text-align: center;
+}
+
+.mat-raised-button {
+  color: #fff;
+  background: rgb(1, 1, 212);
 }
 
 .topFilterBtn {

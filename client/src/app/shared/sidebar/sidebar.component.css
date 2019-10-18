@@ -5,6 +5,7 @@
 
 .sideNav-list {
   font-size: 100%;
+  font-family: cursive;
   padding-bottom: 10px;
 }
 
@@ -14,6 +15,7 @@ a {
 }
 
 .active {
+  font-size: 105%;
   font-style: italic;
   color: #fff;
 }

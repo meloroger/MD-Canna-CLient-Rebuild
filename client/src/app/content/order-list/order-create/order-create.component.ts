@@ -6,6 +6,7 @@ import { OrderRequest } from 'src/app/dto/order-request.interface';
 import { Item } from 'src/app/model/item.interface';
 import { ItemFacade } from 'src/app/facades/item.facade';
 import { OrderFacade } from 'src/app/facades/order.facade';
+import { Order } from 'src/app/model/order.interface';
 
 @Component({
   selector: 'app-order-create',
@@ -31,7 +32,7 @@ export class OrderCreateComponent implements OnInit {
   }
 
   submitCreate() {
-    const orderRequest: OrderRequest = this.createForm.value;
+    const orderRequest: Order = this.createForm.value;
     console.log(orderRequest);
     this.orderFacade.createOrder(orderRequest);
     this.dialogRef.close();

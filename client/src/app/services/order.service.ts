@@ -36,7 +36,7 @@ export class OrderService {
       userId: user.id,
       complete: false
     };
-    console.log(order);
+    console.log(orderRequest);
     return this.http
       .post<Order>(
         `${environment.apiUrl}/order/create`,

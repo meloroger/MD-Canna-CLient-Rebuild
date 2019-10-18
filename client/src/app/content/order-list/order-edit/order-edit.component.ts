@@ -5,6 +5,7 @@ import { Order } from 'src/app/model/order.interface';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OrderRequest } from 'src/app/dto/order-request.interface';
 import { MatDialogRef } from '@angular/material';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-order-edit',
@@ -21,7 +22,6 @@ export class OrderEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.selectedOrder$ = this.orderFacade.selectedOrder$;
     this.editForm = this.formBuilder.group({
       id: ['', [Validators.required]],
       itemId: ['', [Validators.required]],
@@ -29,6 +29,18 @@ export class OrderEditComponent implements OnInit {
       userId: ['', [Validators.required]],
       complete: ['', [Validators.required]]
     });
+    this.selectedOrder$ = this.orderFacade.selectedOrder$.pipe(
+      map(order => {
+        this.editForm.setValue({
+          id: order.id,
+          itemId: order.itemId,
+          quantity: order.quantity,
+          userId: order.userId,
+          complete: order.complete
+        });
+        return order;
+      })
+    );
   }
 
   submitEdit() {

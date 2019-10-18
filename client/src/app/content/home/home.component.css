@@ -3,7 +3,7 @@
 .pimg3,
 .pimg4 {
   position: relative;
-  opacity: 0.7;
+  opacity: 1;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -37,16 +37,19 @@
 .section {
   text-align: center;
   padding: 25px 50px;
+  font-family: cursive;
 }
 
 .section-light {
   background-color: #f4f4f4;
-  color: #676;
+  color: #282e34;
+  font-family: cursive;
 }
 
 .section-dark {
   background-color: #282e34;
   color: #ddd;
+  font-family: cursive;
 }
 
 .ptext {
@@ -58,12 +61,14 @@
   font-size: 27px;
   letter-spacing: 8px;
   text-transform: uppercase;
+  font-family: cursive;
 }
 
 .ptext .border {
   background-color: #111;
   color: #fff;
   padding: 20px;
+  font-family: cursive;
 }
 
 .ptext .border.trans {

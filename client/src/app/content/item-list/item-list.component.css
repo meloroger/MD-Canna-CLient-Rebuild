@@ -6,6 +6,11 @@ a {
   text-align: center;
 }
 
+.mat-raised-button {
+  color: #fff;
+  background: rgb(1, 1, 212);
+}
+
 .topFilterBtn {
   display: flex;
   flex-direction: row;

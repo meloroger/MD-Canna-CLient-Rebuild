@@ -55,6 +55,10 @@ export class StockFacade {
   );
 
   constructor(private stockService: StockService) {
+    this.refreshState();
+  }
+
+  refreshState(): void {
     combineLatest(this.criteria$, this.pagination$)
       .pipe(
         switchMap(([criteria, pagination]) => {
@@ -110,6 +114,11 @@ export class StockFacade {
   }
 
   updateStockMovement(stockMovement: StockMovement): void {
+    stockMovement = {
+      ...stockMovement,
+      orders: this.state.selectedStock.orders
+    };
+    console.log(stockMovement);
     this.stockService.updateStockMovement(stockMovement).subscribe(stock =>
       this.updateState({
         ...this.state,
