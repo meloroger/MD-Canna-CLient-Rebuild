@@ -1,4 +1,7 @@
 <h2>Login</h2>
+<p class="info">
+  **Please check your e-mail after the register process**
+</p>
 <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
   <div flexLayout="column">
     <mat-form-field appearance="outline">
@@ -14,6 +17,9 @@
       <mat-icon matSuffix>https</mat-icon>
     </mat-form-field>
   </div>
+  <p class="info">
+    **For best mobile experience, use <strong>landscape</strong>**
+  </p>
   <mat-divider></mat-divider>
   <div class="loginBtns">
     <button

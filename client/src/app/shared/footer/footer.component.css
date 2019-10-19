@@ -30,3 +30,21 @@ img {
 .link-text {
   font-size: 75%;
 }
+
+@media (max-width: 500px) {
+  .link-text {
+    font-size: 7.5px;
+  }
+
+  img {
+    padding-right: 0;
+  }
+
+  .copyright {
+    padding-right: 5px;
+  }
+
+  #img2 {
+    padding-right: 4px;
+  }
+}

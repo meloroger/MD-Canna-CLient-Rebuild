@@ -7,3 +7,9 @@
 .content {
   padding: 20px;
 }
+
+@media (max-width: 500px) {
+  #side-bar {
+    display: none;
+  }
+}

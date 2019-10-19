@@ -11,3 +11,16 @@
 .btn {
   width: 40%;
 }
+
+.info {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: red;
+  text-align: center;
+  font-size: 50%;
+}
+
+@media (max-width: 500px) {
+  .info {
+    font-size: 15px;
+  }
+}

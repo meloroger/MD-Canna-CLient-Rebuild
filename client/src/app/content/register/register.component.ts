@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
-import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { RegisterRequest } from 'src/app/dto/register-request.interface';
 
