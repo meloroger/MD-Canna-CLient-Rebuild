@@ -28,5 +28,5 @@ export class ShowOrdersComponent implements OnInit {
     this.selectedStock$ = this.stockFacade.selectedStock$;
   }
 
-  applyFilter(event) {}
+  applyFilter() {}
 }
