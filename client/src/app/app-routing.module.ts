@@ -13,6 +13,7 @@ import { StockListComponent } from './content/stock-list/stock-list.component';
 import { LiveFeedComponent } from './content/live-feed/live-feed.component';
 import { AccessComponent } from './layouts/access/access.component';
 import { AuthGuard } from './guards/auth.guard';
+import { RegisterSuccessComponent } from './content/info/register-success/register-success.component';
 
 const routes: Routes = [
   {

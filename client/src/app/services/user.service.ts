@@ -34,8 +34,8 @@ export class UserService {
     );
   }
 
-  getUsers(): Observable<User> {
-    return this.http.get<User>(
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(
       `${environment.apiUrl}/user/all`,
       this.getHeaders()
     );
@@ -54,5 +54,14 @@ export class UserService {
       user,
       this.getHeaders()
     );
+  }
+
+  emailTaken(email: string): Observable<boolean> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    console.log(email);
+    return this.http.post<any>(`${environment.apiUrl}/user/email`, email, {
+      headers
+    });
   }
 }

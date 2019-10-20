@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ShowOrdersComponent } from './stock-list/show-orders/show-orders.component';
 import { ShowStockMovementsComponent } from './order-list/show-stock-movements/show-stock-movements.component';
+import { RegisterSuccessComponent } from './info/register-success/register-success.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ShowStockMovementsComponent } from './order-list/show-stock-movements/s
     StockCreateComponent,
     LiveFeedComponent,
     ShowOrdersComponent,
-    ShowStockMovementsComponent
+    ShowStockMovementsComponent,
+    RegisterSuccessComponent
   ],
   imports: [
     CommonModule,
@@ -77,7 +79,8 @@ import { ShowStockMovementsComponent } from './order-list/show-stock-movements/s
     StockCreateComponent,
     StockEditComponent,
     ShowOrdersComponent,
-    ShowStockMovementsComponent
+    ShowStockMovementsComponent,
+    RegisterSuccessComponent
   ]
 })
 export class ContentModule {}
