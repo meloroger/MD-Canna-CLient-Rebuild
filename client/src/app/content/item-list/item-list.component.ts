@@ -46,6 +46,7 @@ export class ItemListComponent implements OnInit {
   }
 
   deleteHandler(id: string): void {
+    this.itemFacade.setLoading(true);
     this.itemFacade.deleteItem(id);
   }
 }

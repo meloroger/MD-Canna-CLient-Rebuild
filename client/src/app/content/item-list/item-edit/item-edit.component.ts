@@ -39,6 +39,7 @@ export class ItemEditComponent implements OnInit {
   }
 
   submitEdit() {
+    this.itemFacade.setLoading(true);
     const itemRequest: ItemRequest = this.editForm.value;
     this.itemFacade.updateItem(itemRequest);
     this.dialogRef.close();

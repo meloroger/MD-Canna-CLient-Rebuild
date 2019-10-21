@@ -25,6 +25,7 @@ export class ItemCreateComponent implements OnInit {
   }
 
   submitCreate() {
+    this.itemFacade.setLoading(true);
     const itemRequest: ItemRequest = this.createForm.value;
     this.itemFacade.createItem(itemRequest);
     this.dialogRef.close();

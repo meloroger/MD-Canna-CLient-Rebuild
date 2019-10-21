@@ -120,4 +120,11 @@ export class ItemFacade {
       })
     );
   }
+
+  setLoading(loading: boolean): void {
+    this.updateState({
+      ...this.state,
+      loading
+    });
+  }
 }

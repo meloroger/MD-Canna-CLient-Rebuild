@@ -48,11 +48,14 @@ export class LoginComponent implements OnInit {
           this.authService.storeUserData(result.token, result);
           this.router.navigate(['welcome']);
           this.dialogRef.close();
+        } else {
+          this.openSnackBar('Login attempt failed...');
         }
       },
       err => {
         this.loading = false;
-        this.openSnackBar('Login attempt failed...');
+        this.openSnackBar('Hmmm...might be a network problem....');
+        console.log(err);
       }
     );
   }

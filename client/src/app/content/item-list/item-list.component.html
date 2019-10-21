@@ -17,6 +17,9 @@
         </mat-form-field>
       </div>
     </div>
+    <ng-container *ngIf="vm.loading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-container>
     <mat-divider></mat-divider>
     <table class="items">
       <thead>
