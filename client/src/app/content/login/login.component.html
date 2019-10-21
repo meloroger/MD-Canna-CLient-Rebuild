@@ -21,6 +21,9 @@
     **For best mobile experience, use <strong>landscape</strong>**
   </p>
   <mat-divider></mat-divider>
+  <ng-container *ngIf="getLoading()">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </ng-container>
   <div class="loginBtns">
     <button
       type="submit"

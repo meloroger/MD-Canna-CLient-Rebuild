@@ -16,14 +16,16 @@ import { RegisterSuccessComponent } from '../info/register-success/register-succ
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  loading = false;
+  private loading: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<RegisterComponent>,
     private readonly userService: UserService,
     private snackBar: MatSnackBar
-  ) {}
+  ) {
+    this.loading = false;
+  }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -31,6 +33,10 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
+  }
+
+  getLoading(): boolean {
+    return this.loading;
   }
 
   submitRegister(): void {
