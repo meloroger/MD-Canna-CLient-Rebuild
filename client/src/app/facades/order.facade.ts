@@ -131,4 +131,11 @@ export class OrderFacade {
       });
     });
   }
+
+  setLoading(loading: boolean): void {
+    this.updateState({
+      ...this.state,
+      loading
+    });
+  }
 }

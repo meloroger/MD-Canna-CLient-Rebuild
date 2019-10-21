@@ -32,6 +32,7 @@ export class OrderCreateComponent implements OnInit {
   }
 
   submitCreate() {
+    this.orderFacade.setLoading(true);
     const orderRequest: Order = this.createForm.value;
     console.log(orderRequest);
     this.orderFacade.createOrder(orderRequest);

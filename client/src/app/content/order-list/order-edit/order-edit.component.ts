@@ -44,6 +44,7 @@ export class OrderEditComponent implements OnInit {
   }
 
   submitEdit() {
+    this.orderFacade.setLoading(true);
     const orderRequest: OrderRequest = this.editForm.value;
     this.orderFacade.updateOrder(orderRequest);
     this.dialogRef.close();

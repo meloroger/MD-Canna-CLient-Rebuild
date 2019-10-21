@@ -44,17 +44,17 @@ export class LoginComponent implements OnInit {
         console.log(result);
         this.loading = false;
         if (result !== null && result.token !== null) {
-          this.openSnackBar('Your now logged in...');
+          this.openSnackBar('Your are now logged in...', 'success');
           this.authService.storeUserData(result.token, result);
           this.router.navigate(['welcome']);
           this.dialogRef.close();
         } else {
-          this.openSnackBar('Login attempt failed...');
+          this.openSnackBar('Login attempt failed...', 'fail');
         }
       },
       err => {
         this.loading = false;
-        this.openSnackBar('Hmmm...might be a network problem....');
+        this.openSnackBar('Hmmm...might be a network problem....', 'fail');
         console.log(err);
       }
     );
@@ -64,11 +64,12 @@ export class LoginComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  openSnackBar(message: string) {
+  openSnackBar(message: string, css: string) {
     this.snackBar.open(message, 'Ok', {
       duration: 5000,
       verticalPosition: 'top',
-      horizontalPosition: 'center'
+      horizontalPosition: 'center',
+      panelClass: css
     });
   }
 }

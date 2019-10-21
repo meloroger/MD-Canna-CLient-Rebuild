@@ -33,11 +33,11 @@ export class StockFacade {
     distinctUntilChanged()
   );
   criteria$ = this.state$.pipe(
-    map(stock => this.state.criteria),
+    map(state => state.criteria),
     distinctUntilChanged()
   );
   pagination$ = this.state$.pipe(
-    map(state => this.state.pagination),
+    map(state => state.pagination),
     distinctUntilChanged()
   );
   loading$ = this.state$.pipe(map(state => state.loading));
@@ -128,5 +128,12 @@ export class StockFacade {
         loading: false
       })
     );
+  }
+
+  setLoading(loading: boolean): void {
+    this.updateState({
+      ...this.state,
+      loading
+    });
   }
 }

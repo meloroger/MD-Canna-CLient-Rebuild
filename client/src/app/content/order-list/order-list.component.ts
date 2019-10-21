@@ -40,7 +40,7 @@ export class OrderListComponent implements OnInit {
   showStockMovements(order: Order) {
     const dialogConfig = new MatDialogConfig();
     this.orderFacade.selectOrder(order);
-    //dialogConfig.disableClose = true;
+    // dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     this.dialog.open(ShowStockMovementsComponent, dialogConfig);

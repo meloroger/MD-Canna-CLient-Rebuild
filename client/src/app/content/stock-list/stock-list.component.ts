@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { StockFacade } from 'src/app/facades/stock.facade';
 import { StockMovement } from 'src/app/model/stock-movement.interface';
 import { ShowOrdersComponent } from './show-orders/show-orders.component';
+import { StockState } from 'src/app/facades/state/stock-state.interface';
 
 @Component({
   selector: 'app-stock-list',
@@ -13,7 +14,7 @@ import { ShowOrdersComponent } from './show-orders/show-orders.component';
   styleUrls: ['./stock-list.component.css']
 })
 export class StockListComponent implements OnInit {
-  stockMovements$: Observable<StockMovement[]>;
+  stockMovementsVM$: Observable<StockState>;
 
   constructor(
     private dialog: MatDialog,
@@ -21,7 +22,7 @@ export class StockListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.stockMovements$ = this.stockFacade.stockMovements$;
+    this.stockMovementsVM$ = this.stockFacade.vm$;
   }
 
   applyFilter(filterValue: string): void {
@@ -56,6 +57,7 @@ export class StockListComponent implements OnInit {
   }
 
   deleteHandler(id: string): void {
+    this.stockFacade.setLoading(true);
     this.stockFacade.removeStockMovement(id);
   }
 }

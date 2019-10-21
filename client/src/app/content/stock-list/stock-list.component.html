@@ -1,4 +1,4 @@
-<ng-container *ngIf="stockMovements$ | async as stocks">
+<ng-container *ngIf="stockMovementsVM$ | async as vm">
   <mat-card>
     <mat-card-title>Stock Movement List</mat-card-title>
     <div class="topFilterBtn">
@@ -17,6 +17,9 @@
         </mat-form-field>
       </div>
     </div>
+    <ng-container *ngIf="vm.loading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-container>
     <mat-divider></mat-divider>
     <table class="stocks">
       <thead>
@@ -44,7 +47,7 @@
           <th class="row-5 row-icon"></th>
         </tr>
       </thead>
-      <tbody *ngFor="let stock of stocks">
+      <tbody *ngFor="let stock of vm.stockMovements">
         <tr>
           <td class="stockId">
             {{ stock.id }}

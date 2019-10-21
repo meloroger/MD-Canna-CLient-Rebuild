@@ -52,6 +52,7 @@ export class StockEditComponent implements OnInit {
   }
 
   submitEdit() {
+    this.stockFacade.setLoading(true);
     const stockRequest: StockRequest = this.editForm.value;
     console.log(stockRequest);
     this.stockFacade.updateStockMovement(stockRequest);

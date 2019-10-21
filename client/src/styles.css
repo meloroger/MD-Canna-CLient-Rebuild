@@ -20,6 +20,16 @@ body {
   color: #fff;
 }
 
+.success {
+  background-color: green;
+  color: #fff;
+}
+
+.fail {
+  background-color: red;
+  color: #fff;
+}
+
 @media (max-width: 500px) {
   .mat-snack-bar-container {
     max-width: 100vw !important;

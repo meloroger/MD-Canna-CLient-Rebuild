@@ -32,6 +32,7 @@ export class StockCreateComponent implements OnInit {
   }
 
   submitCreate() {
+    this.stockFacade.setLoading(true);
     const stockRequest: StockRequest = this.createForm.value;
     this.stockFacade.createStockMovement(stockRequest);
     this.dialogRef.close();
