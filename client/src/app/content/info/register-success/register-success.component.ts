@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBarRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-register-success',
@@ -7,9 +7,16 @@ import { MatSnackBarRef } from '@angular/material';
   styleUrls: ['./register-success.component.css']
 })
 export class RegisterSuccessComponent implements OnInit {
-  constructor(private snackBarRef: MatSnackBarRef<RegisterSuccessComponent>) {}
+  constructor(
+    private snackBarRef: MatSnackBarRef<RegisterSuccessComponent>,
+    @Inject(MAT_SNACK_BAR_DATA) private data: string
+  ) {}
 
   ngOnInit() {}
+
+  getData(): string {
+    return this.data;
+  }
 
   okAction() {
     this.snackBarRef.dismiss();
