@@ -11,3 +11,8 @@
 .btn {
   width: 40%;
 }
+
+.info {
+  text-align: center;
+  color: red;
+}
