@@ -1,39 +1,6 @@
-/* Structure */
-table {
+.display {
+  height: 100%;
   width: 100%;
-}
-
-a {
-  cursor: pointer;
-}
-
-.topFilterBtn {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.filter {
-  width: 100%;
-}
-
-.btn {
-  padding-left: 20px;
-}
-
-.mat-form-field {
-  font-size: 14px;
-  width: 80%;
-  float: right;
-}
-
-.iconsBttm {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.deleteIcon {
-  color: orangered;
+  background-image: url('../../../assets/undercontruction.png');
+  background-size: cover;
 }

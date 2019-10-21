@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {
-  MatDialogRef,
-  MatSnackBar,
-  MatSnackBarConfig
-} from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { UserService } from 'src/app/services/user.service';
 import { RegisterRequest } from 'src/app/dto/register-request.interface';
 import { RegisterSuccessComponent } from '../info/register-success/register-success.component';
@@ -57,7 +53,7 @@ export class RegisterComponent implements OnInit {
       },
       err => {
         this.loading = false;
-        this.openSnackBar('Oops something went wrong...');
+        this.openSnackBar('Oops something went wrong...', 'fail');
       }
     );
   }
@@ -66,11 +62,12 @@ export class RegisterComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  openSnackBar(message: string) {
+  openSnackBar(message: string, css: string) {
     this.snackBar.open(message, 'Ok', {
       duration: 5000,
       verticalPosition: 'top',
-      horizontalPosition: 'center'
+      horizontalPosition: 'center',
+      panelClass: css
     });
   }
 }

@@ -6,6 +6,7 @@ import { StockService } from 'src/app/services/stock.service';
 import { StockMovement } from 'src/app/model/stock-movement.interface';
 import { Pagination } from 'src/app/model/pagination.interface';
 import { StockRequest } from '../dto/stock-request.interface';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class StockFacade {
@@ -54,7 +55,10 @@ export class StockFacade {
     })
   );
 
-  constructor(private stockService: StockService) {
+  constructor(
+    private readonly stockService: StockService,
+    private readonly snackBar: MatSnackBar
+  ) {
     this.refreshState();
   }
 
@@ -94,22 +98,36 @@ export class StockFacade {
   }
 
   createStockMovement(stockRequest: StockRequest): void {
-    this.stockService.createStockMovement(stockRequest).subscribe(stock =>
-      this.updateState({
-        ...this.state,
-        stockMovements: [...this.state.stockMovements, stock],
-        loading: false
-      })
+    this.stockService.createStockMovement(stockRequest).subscribe(
+      stock => {
+        this.openSnackBar('Stock Movement Created!', 'success');
+        this.updateState({
+          ...this.state,
+          stockMovements: [...this.state.stockMovements, stock],
+          loading: false
+        });
+      },
+      () => {
+        this.setLoading(false);
+        this.openSnackBar('Oops...something went wrong...', 'fail');
+      }
     );
   }
 
   removeStockMovement(id: string): void {
-    this.stockService.deleteStockMovement(id).subscribe(stock =>
-      this.updateState({
-        ...this.state,
-        stockMovements: this.state.stockMovements.filter(s => s.id !== id),
-        loading: false
-      })
+    this.stockService.deleteStockMovement(id).subscribe(
+      stock => {
+        this.openSnackBar('Stock Movement Deleted!', 'success');
+        this.updateState({
+          ...this.state,
+          stockMovements: this.state.stockMovements.filter(s => s.id !== id),
+          loading: false
+        });
+      },
+      () => {
+        this.setLoading(false);
+        this.openSnackBar('Oops...something went wrong...', 'fail');
+      }
     );
   }
 
@@ -118,15 +136,21 @@ export class StockFacade {
       ...stockMovement,
       orders: this.state.selectedStock.orders
     };
-    console.log(stockMovement);
-    this.stockService.updateStockMovement(stockMovement).subscribe(stock =>
-      this.updateState({
-        ...this.state,
-        stockMovements: this.state.stockMovements
-          .filter(s => s.id !== stockMovement.id)
-          .concat(stock),
-        loading: false
-      })
+    this.stockService.updateStockMovement(stockMovement).subscribe(
+      stock => {
+        this.openSnackBar('Stock Movement Updated', 'success');
+        this.updateState({
+          ...this.state,
+          stockMovements: this.state.stockMovements
+            .filter(s => s.id !== stockMovement.id)
+            .concat(stock),
+          loading: false
+        });
+      },
+      () => {
+        this.setLoading(false);
+        this.openSnackBar('Oops...something went wrong...', 'fail');
+      }
     );
   }
 
@@ -134,6 +158,14 @@ export class StockFacade {
     this.updateState({
       ...this.state,
       loading
+    });
+  }
+
+  private openSnackBar(message: string, css: string): void {
+    this.snackBar.open(message, 'Ok', {
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      panelClass: css
     });
   }
 }

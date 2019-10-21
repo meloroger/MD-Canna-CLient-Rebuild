@@ -7,6 +7,7 @@ import { Pagination } from 'src/app/model/pagination.interface';
 import { Order } from 'src/app/model/order.interface';
 import { OrderRequest } from '../dto/order-request.interface';
 import { StockFacade } from './stock.facade';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class OrderFacade {
@@ -57,7 +58,8 @@ export class OrderFacade {
 
   constructor(
     private readonly orderService: OrderService,
-    private readonly stockFacade: StockFacade
+    private readonly stockFacade: StockFacade,
+    private readonly snackBar: MatSnackBar
   ) {
     combineLatest(this.criteria$, this.pagination$)
       .pipe(
@@ -95,24 +97,38 @@ export class OrderFacade {
   }
 
   createOrder(orderRequest: Order): void {
-    this.orderService.createOrder(orderRequest).subscribe(ordr => {
-      this.stockFacade.refreshState();
-      this.updateState({
-        ...this.state,
-        orders: [...this.state.orders, ordr],
-        loading: false
-      });
-    });
+    this.orderService.createOrder(orderRequest).subscribe(
+      ordr => {
+        this.openSnackBar('Order Created!', 'success');
+        this.stockFacade.refreshState();
+        this.updateState({
+          ...this.state,
+          orders: [...this.state.orders, ordr],
+          loading: false
+        });
+      },
+      () => {
+        this.setLoading(false);
+        this.openSnackBar('Oops...something went wrong...', 'fail');
+      }
+    );
   }
 
   deleteOrder(id: string): void {
-    this.orderService.deleteOrder(id).subscribe(order => {
-      this.updateState({
-        ...this.state,
-        orders: this.state.orders.filter(o => o.id !== id),
-        loading: false
-      });
-    });
+    this.orderService.deleteOrder(id).subscribe(
+      order => {
+        this.openSnackBar('Order Deleted!', 'success');
+        this.updateState({
+          ...this.state,
+          orders: this.state.orders.filter(o => o.id !== id),
+          loading: false
+        });
+      },
+      () => {
+        this.setLoading(false);
+        this.openSnackBar('Oops...something went wrong...', 'fail');
+      }
+    );
   }
 
   updateOrder(orderRequest: OrderRequest): void {
@@ -120,22 +136,37 @@ export class OrderFacade {
       ...orderRequest,
       stockMovements: this.state.selectedOrder.stockMovements
     };
-    console.log(orderRequest);
-    this.orderService.updateOrder(orderRequest).subscribe(ordr => {
-      this.updateState({
-        ...this.state,
-        orders: this.state.orders
-          .filter(o => o.id !== orderRequest.id)
-          .concat(ordr),
-        loading: false
-      });
-    });
+    this.orderService.updateOrder(orderRequest).subscribe(
+      ordr => {
+        this.openSnackBar('Order Updated!', 'success');
+        this.updateState({
+          ...this.state,
+          orders: this.state.orders
+            .filter(o => o.id !== orderRequest.id)
+            .concat(ordr),
+          loading: false
+        });
+      },
+      () => {
+        this.setLoading(false);
+        this.openSnackBar('Oops...something went wrong...', 'fail');
+      }
+    );
   }
 
   setLoading(loading: boolean): void {
     this.updateState({
       ...this.state,
       loading
+    });
+  }
+
+  private openSnackBar(message: string, css: string): void {
+    this.snackBar.open(message, 'Ok', {
+      duration: 5000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      panelClass: css
     });
   }
 }

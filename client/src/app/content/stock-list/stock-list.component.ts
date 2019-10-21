@@ -26,7 +26,7 @@ export class StockListComponent implements OnInit {
   }
 
   applyFilter(filterValue: string): void {
-    //this.dataSource.filter = filterValue.trim().toLowerCase();
+    // this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   createHandler(): void {
@@ -41,7 +41,7 @@ export class StockListComponent implements OnInit {
     console.log('clicked');
     const dialogConfig = new MatDialogConfig();
     this.stockFacade.selectStockMovement(stock);
-    //dialogConfig.disableClose = true;
+    // dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
     this.dialog.open(ShowOrdersComponent, dialogConfig);

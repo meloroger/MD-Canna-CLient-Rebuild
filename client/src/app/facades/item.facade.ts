@@ -6,6 +6,7 @@ import { ItemService } from '../services/item.service';
 import { Pagination } from '../model/pagination.interface';
 import { Item } from '../model/item.interface';
 import { ItemRequest } from '../dto/item-request.interface';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class ItemFacade {
@@ -54,7 +55,10 @@ export class ItemFacade {
     })
   );
 
-  constructor(private itemService: ItemService) {
+  constructor(
+    private readonly itemService: ItemService,
+    private snackBar: MatSnackBar
+  ) {
     combineLatest(this.criteria$, this.pagination$)
       .pipe(
         switchMap(([criteria, pagination]) => {
@@ -90,34 +94,55 @@ export class ItemFacade {
   }
 
   createItem(itemRequest: ItemRequest) {
-    return this.itemService.createItem(itemRequest).subscribe(itm => {
-      this.updateState({
-        ...this.state,
-        items: [...this.state.items, itm],
-        loading: false
-      });
-    });
+    return this.itemService.createItem(itemRequest).subscribe(
+      itm => {
+        this.openSnackBar('Item Created!', 'success');
+        this.updateState({
+          ...this.state,
+          items: [...this.state.items, itm],
+          loading: false
+        });
+      },
+      () => {
+        this.setLoading(false);
+        this.openSnackBar('Oops...something went wrong...', 'fail');
+      }
+    );
   }
 
   deleteItem(id: string) {
-    return this.itemService.deleteItem(id).subscribe(item => {
-      this.updateState({
-        ...this.state,
-        items: this.state.items.filter(i => i.id !== id),
-        loading: false
-      });
-    });
+    return this.itemService.deleteItem(id).subscribe(
+      item => {
+        this.openSnackBar('Item Deleted!', 'success');
+        this.updateState({
+          ...this.state,
+          items: this.state.items.filter(i => i.id !== id),
+          loading: false
+        });
+      },
+      () => {
+        this.setLoading(false);
+        this.openSnackBar('Oops...something went wrong...', 'fail');
+      }
+    );
   }
 
   updateItem(itemRequest: ItemRequest) {
-    return this.itemService.updateItem(itemRequest).subscribe(itm =>
-      this.updateState({
-        ...this.state,
-        items: this.state.items
-          .filter(i => i.id !== itemRequest.id)
-          .concat(itm),
-        loading: false
-      })
+    return this.itemService.updateItem(itemRequest).subscribe(
+      itm => {
+        this.openSnackBar('Item Updated!', 'success');
+        this.updateState({
+          ...this.state,
+          items: this.state.items
+            .filter(i => i.id !== itemRequest.id)
+            .concat(itm),
+          loading: false
+        });
+      },
+      () => {
+        this.setLoading(false);
+        this.openSnackBar('Oops...something went wrong...', 'fail');
+      }
     );
   }
 
@@ -125,6 +150,15 @@ export class ItemFacade {
     this.updateState({
       ...this.state,
       loading
+    });
+  }
+
+  private openSnackBar(message: string, css: string): void {
+    this.snackBar.open(message, 'Ok', {
+      duration: 5000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      panelClass: css
     });
   }
 }
