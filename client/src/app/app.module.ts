@@ -14,6 +14,7 @@ import { UserService } from './services/user.service';
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { ItemService } from './services/item.service';
+import { StreamService } from './services/stream.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +34,8 @@ import { ItemService } from './services/item.service';
     OrderService,
     StockService,
     UserService,
-    ValidateService
+    ValidateService,
+    StreamService
   ],
   bootstrap: [AppComponent]
 })

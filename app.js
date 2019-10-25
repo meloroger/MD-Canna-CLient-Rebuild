@@ -16,6 +16,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Body Parser middleware
 app.use(bodyParser.json());
 
+app.get('/test', (req, res) => {
+  // console.log(req);
+  res.send('express server...');
+});
+
 // Any route not specified above will direct here
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));

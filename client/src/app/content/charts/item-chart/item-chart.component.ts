@@ -4,10 +4,10 @@ import { Chart } from 'chart.js';
 @Component({
   selector: 'app-item-chart',
   templateUrl: './item-chart.component.html',
-  styleUrls: ['./item-chart.component.css'],
+  styleUrls: ['./item-chart.component.css']
 })
 export class ItemChartComponent implements OnInit {
-  chart;
+  chart: Chart;
 
   ngOnInit() {
     this.loadChart();
@@ -23,15 +23,15 @@ export class ItemChartComponent implements OnInit {
           yAxes: [
             {
               ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
+                beginAtZero: true
+              }
+            }
+          ]
         },
         title: {
           display: true,
-          text: 'Combo Bar and line Chart',
-        },
+          text: 'Combo Bar and line Chart'
+        }
       },
       data: {
         labels: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'],
@@ -42,7 +42,7 @@ export class ItemChartComponent implements OnInit {
             data: [243, 156, 365, 30, 156, 265, 356, 543],
             backgroundColor: 'rgba(255,0,255,0.4)',
             borderColor: 'rgba(255,0,255,0.4)',
-            fill: false,
+            fill: false
           },
           // {
           //   type: 'line',
@@ -60,10 +60,10 @@ export class ItemChartComponent implements OnInit {
             data: [243, 156, 365, 30, 156, 265, 356, 543].reverse(),
             backgroundColor: 'rgba(0,0,255,0.4)',
             borderColor: 'rgba(0,0,255,0.4)',
-            fill: false,
-          },
-        ],
-      },
+            fill: false
+          }
+        ]
+      }
     });
   }
 }
