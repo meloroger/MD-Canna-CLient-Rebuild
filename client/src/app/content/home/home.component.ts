@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StreamService } from 'src/app/services/stream.service';
+import { DataLauncher } from 'src/app/launcher/data.launcher';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +7,7 @@ import { StreamService } from 'src/app/services/stream.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor(private streamService: StreamService) {}
+  constructor(private dataLauncher: DataLauncher) {}
 
   ngOnInit() {}
 }

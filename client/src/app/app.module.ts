@@ -14,7 +14,7 @@ import { UserService } from './services/user.service';
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { ItemService } from './services/item.service';
-import { StreamService } from './services/stream.service';
+import { DataLauncher } from './launcher/data.launcher';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,7 +35,7 @@ import { StreamService } from './services/stream.service';
     StockService,
     UserService,
     ValidateService,
-    StreamService
+    DataLauncher
   ],
   bootstrap: [AppComponent]
 })

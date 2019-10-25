@@ -5,10 +5,16 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
-
 // CORS middleware
 app.use(cors());
+
+const PORT = process.env.PORT || 3000;
+
+const server = app.listen(PORT, () => {
+  console.log(`Server started on port: ${PORT}`);
+});
+
+const io = require('socket.io').listen(server);
 
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -16,9 +22,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Body Parser middleware
 app.use(bodyParser.json());
 
-app.get('/test', (req, res) => {
-  // console.log(req);
-  res.send('express server...');
+const stream = io.of('/data');
+app.post('/data/stream', (req, res) => {
+  res.send(req.body);
+  stream.emit('data-stream', req.body);
 });
 
 // Any route not specified above will direct here
@@ -27,6 +34,6 @@ app.get('*', (req, res) => {
 });
 
 // Server Init
-app.listen(PORT, () => {
+/* app.listen(PORT, () => {
   console.log(`Server started on port: ${PORT}`);
-});
+}); */
