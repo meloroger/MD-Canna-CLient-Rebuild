@@ -1,3 +1,5 @@
+<ng-container *ngIf="itemChartVM$ | async as itemChart"></ng-container>
+<ng-container *ngIf="items$ | async as items"></ng-container>
 <div>
   <div>
     <canvas id="bar"></canvas>

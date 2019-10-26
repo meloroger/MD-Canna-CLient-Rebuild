@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./live-feed.component.css']
 })
 export class LiveFeedComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   ngOnInit() {}
 }

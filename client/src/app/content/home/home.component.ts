@@ -7,7 +7,7 @@ import { DataLauncher } from 'src/app/launcher/data.launcher';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor(private dataLauncher: DataLauncher) {}
+  constructor() {}
 
   ngOnInit() {}
 }

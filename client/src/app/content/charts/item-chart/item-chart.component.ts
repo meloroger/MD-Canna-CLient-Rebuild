@@ -1,15 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Chart } from 'chart.js';
+import { DataLauncher } from 'src/app/launcher/data.launcher';
+import { DataState } from 'src/app/launcher/state/data-state.interface';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { ItemData } from 'src/app/dto/item-data.interface';
+import { ItemFacade } from 'src/app/facades/item.facade';
+import { Item } from 'src/app/model/item.interface';
 
 @Component({
   selector: 'app-item-chart',
   templateUrl: './item-chart.component.html',
-  styleUrls: ['./item-chart.component.css']
+  styleUrls: ['./item-chart.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemChartComponent implements OnInit {
   chart: Chart;
+  itemChartVM$: Observable<ItemData[]>;
+
+  constructor(private readonly dataLauncher: DataLauncher) {}
 
   ngOnInit() {
+    this.itemChartVM$ = this.dataLauncher.itemData$.pipe(
+      map(data => {
+        console.log(data);
+        if (data.length > 0) {
+          this.updateData(data);
+        }
+
+        return data;
+      })
+    );
     this.loadChart();
   }
 
@@ -17,6 +38,7 @@ export class ItemChartComponent implements OnInit {
     this.chart = new Chart('bar', {
       type: 'bar',
       options: {
+        animation: false,
         responsive: true,
         maintainAspectRatio: false,
         scales: {
@@ -30,40 +52,58 @@ export class ItemChartComponent implements OnInit {
         },
         title: {
           display: true,
-          text: 'Combo Bar and line Chart'
+          text: 'Item Availability'
         }
       },
       data: {
-        labels: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'],
+        labels: ['ITEMS'],
         datasets: [
           {
             type: 'bar',
-            label: 'My First dataset',
-            data: [243, 156, 365, 30, 156, 265, 356, 543],
-            backgroundColor: 'rgba(255,0,255,0.4)',
-            borderColor: 'rgba(255,0,255,0.4)',
+            label: '',
+            data: [300],
+            backgroundColor: `rgba(0, 0, 255, 0.4)`,
+            borderColor: 'rgba(0, 0, 0, 0.9)',
             fill: false
           },
-          // {
-          //   type: 'line',
-          //   label: 'Dataset 2',
-          //   backgroundColor: 'rgba(0,0,255,0.4)',
-          //   borderColor: 'rgba(0,0,255,0.4)',
-          //   data: [
-          //     443, 256, 165, 100, 56, 65, 35, 543
-          //   ],
-          //   fill: true,
-          // },
           {
             type: 'bar',
-            label: 'My Second dataset',
-            data: [243, 156, 365, 30, 156, 265, 356, 543].reverse(),
-            backgroundColor: 'rgba(0,0,255,0.4)',
-            borderColor: 'rgba(0,0,255,0.4)',
+            label: '',
+            data: [200],
+            backgroundColor: `rgba(255, 0, 255, 0.4)`,
+            borderColor: 'rgba(0, 0, 0, 0.9)',
+            fill: false
+          },
+          {
+            type: 'bar',
+            label: '',
+            data: [100],
+            backgroundColor: `rgba(0, 0, 255, 0.4)`,
+            borderColor: 'rgba(0, 0, 0, 0.9)',
             fill: false
           }
         ]
       }
+    });
+  }
+
+  private updateData(itemData: ItemData[]): void {
+    this.chart.data.datasets = this.addData(itemData);
+
+    this.chart.update();
+  }
+
+  private addData(itemData: ItemData[]): object[] {
+    return itemData.map(item => {
+      const random = () => Math.floor(Math.random() * 255);
+      return {
+        type: 'bar',
+        label: item.name,
+        data: [item.quantity],
+        backgroundColor: `rgba(${random()}, ${random()}, ${random()}, 0.4)`,
+        borderColor: 'rgba(0, 0, 0, 0.9)',
+        fill: false
+      };
     });
   }
 }

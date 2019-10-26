@@ -42,15 +42,28 @@ export class DataLauncher {
 
   constructor() {
     this.socket = io('http://localhost:3000/data');
-    this.dataReceiver();
-  }
 
-  private dataReceiver(): void {
-    this.socket.on('data-stream', data => {
+    this.dataReceiver().subscribe(data => {
       console.log(data);
-      this.updateState({ ...data });
+      this.updateState({
+        ...this.state,
+        orderData: data.orderData,
+        itemData: data.itemData,
+        stockData: data.stockData
+      });
       console.log(this.state);
     });
+  }
+
+  private dataReceiver(): Observable<DataState> {
+    const liveFeed: Observable<DataState> = new Observable(observer => {
+      this.socket.on('data-stream', data => {
+        observer.next(data);
+      });
+    });
+
+    console.log(this.state);
+    return liveFeed;
   }
 
   private updateState(state: DataState): void {
