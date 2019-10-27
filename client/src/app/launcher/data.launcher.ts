@@ -44,14 +44,12 @@ export class DataLauncher {
     this.socket = io('http://localhost:3000/data');
 
     this.dataReceiver().subscribe(data => {
-      console.log(data);
       this.updateState({
         ...this.state,
         orderData: data.orderData,
         itemData: data.itemData,
         stockData: data.stockData
       });
-      console.log(this.state);
     });
   }
 

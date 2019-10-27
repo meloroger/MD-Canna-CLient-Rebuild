@@ -1,4 +1,4 @@
 export interface OrderData {
-  orderCount: number;
+  totalQty: number;
   totalOrders: number;
 }
