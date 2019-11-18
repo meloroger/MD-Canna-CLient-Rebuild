@@ -27,6 +27,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ShowOrdersComponent } from './stock-list/show-orders/show-orders.component';
 import { ShowStockMovementsComponent } from './order-list/show-stock-movements/show-stock-movements.component';
 import { RegisterSuccessComponent } from './info/register-success/register-success.component';
+import { StockChartComponent } from './charts/stock-chart/stock-chart.component';
+import { TestButtonsComponent } from './test-buttons/test-buttons.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { RegisterSuccessComponent } from './info/register-success/register-succe
     LiveFeedComponent,
     ShowOrdersComponent,
     ShowStockMovementsComponent,
-    RegisterSuccessComponent
+    RegisterSuccessComponent,
+    StockChartComponent,
+    TestButtonsComponent
   ],
   imports: [
     CommonModule,

@@ -61,4 +61,11 @@ export class OrderService {
       this.getHeaders()
     );
   }
+
+  deleteAllOrders(): Observable<any> {
+    return this.http.delete(
+      `${environment.apiUrl}/order/deleteall`,
+      this.getHeaders()
+    );
+  }
 }

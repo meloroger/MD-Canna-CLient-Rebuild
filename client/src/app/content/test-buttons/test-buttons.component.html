@@ -1,0 +1,61 @@
+<div class="center">
+  <h3>Send Orders to Test Back End</h3>
+  <button mat-raised-button color="warn" (click)="clearOrders()">
+    Clear Orders
+  </button>
+</div>
+<div class="topBtns">
+  <div class="section">
+    <button mat-fab (click)="submit10()">10</button>
+    <p class="progressTitle">Sent</p>
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ submit10Sent * 10 }}"
+    ></mat-progress-bar>
+    <p class="progressTitle">Completed</p>
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ submit10Completed * 10 }}"
+    ></mat-progress-bar>
+  </div>
+  <div class="section">
+    <button mat-fab (click)="submit100()">100</button>
+    <p class="progressTitle">Sent</p>
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ submit100Sent }}"
+    ></mat-progress-bar>
+    <p class="progressTitle">Completed</p>
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ submit100Completed }}"
+    ></mat-progress-bar>
+  </div>
+  <div class="section">
+    <button mat-fab (click)="submit1000()">1000</button>
+    <p class="progressTitle">Sent</p>
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ submit1000Sent / 10 }}"
+    ></mat-progress-bar>
+    <p class="progressTitle">Completed</p>
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ submit1000Completed / 10 }}"
+    ></mat-progress-bar>
+  </div>
+  <div class="section">
+    <button mat-fab (click)="submit10000()">10000</button>
+    <p class="progressTitle">Sent</p>
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ submit10000Sent / 100 }}"
+    ></mat-progress-bar>
+    <p class="progressTitle">Completed</p>
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ submit10000Completed / 100 }}"
+    ></mat-progress-bar>
+  </div>
+</div>
+<mat-divider></mat-divider>
