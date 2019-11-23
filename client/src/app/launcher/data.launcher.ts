@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
-import io from 'socket.io-client';
-import { DataState } from './state/data-state.interface';
-import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
-import { distinctUntilChanged, map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import io from "socket.io-client";
+import { DataState } from "./state/data-state.interface";
+import { BehaviorSubject, Observable, combineLatest } from "rxjs";
+import { distinctUntilChanged, map } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class DataLauncher {
   private socket: io;
+  private HOST: string;
 
   private state: DataState = {
     orderData: null,
@@ -41,7 +43,11 @@ export class DataLauncher {
   );
 
   constructor() {
-    this.socket = io('http://localhost:3000/data');
+    if (environment.production === true) {
+      this.socket = io(`${environment.apiUrl}:${environment.port}/data`);
+    } else {
+      this.socket = io(`http://localhost:${environment.port}/data`);
+    }
 
     this.dataReceiver().subscribe(data => {
       this.updateState({
@@ -55,7 +61,7 @@ export class DataLauncher {
 
   private dataReceiver(): Observable<DataState> {
     const liveFeed: Observable<DataState> = new Observable(observer => {
-      this.socket.on('data-stream', data => {
+      this.socket.on("data-stream", data => {
         observer.next(data);
       });
     });

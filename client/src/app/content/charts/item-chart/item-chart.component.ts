@@ -1,12 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Chart } from 'chart.js';
 import { DataLauncher } from 'src/app/launcher/data.launcher';
-import { DataState } from 'src/app/launcher/state/data-state.interface';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ItemData } from 'src/app/dto/item-data.interface';
-import { ItemFacade } from 'src/app/facades/item.facade';
-import { Item } from 'src/app/model/item.interface';
 
 @Component({
   selector: 'app-item-chart',
@@ -27,7 +24,6 @@ export class ItemChartComponent implements OnInit {
         if (data.length > 0) {
           this.updateData(data);
         }
-
         return data;
       })
     );
