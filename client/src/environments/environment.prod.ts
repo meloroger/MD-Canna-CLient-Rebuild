@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   apiUrl: "https://mdcanna-backend.herokuapp.com",
-  port: process.env.PORT
+  socketConnection: `https://mdcanna-frontend.herokuapp.com:${process.env.PORT}`
 };

@@ -43,11 +43,7 @@ export class DataLauncher {
   );
 
   constructor() {
-    if (environment.production === true) {
-      this.socket = io(`${environment.apiUrl}:${environment.port}/data`);
-    } else {
-      this.socket = io(`http://localhost:${environment.port}/data`);
-    }
+    this.socket = io(`${environment.socketConnection}/data`);
 
     this.dataReceiver().subscribe(data => {
       this.updateState({
