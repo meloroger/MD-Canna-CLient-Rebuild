@@ -5,11 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: "http://localhost:8080",
-<<<<<<< HEAD
-  socketConnection: `http://localhost:3000`
-=======
   socketConnection: "http://localhost:3000"
->>>>>>> fix
 };
 
 /*
