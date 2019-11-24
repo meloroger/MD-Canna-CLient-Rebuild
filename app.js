@@ -30,6 +30,11 @@ app.post('/data/stream', (req, res) => {
 
 // Any route not specified above will direct here
 app.get('*', (req, res) => {
+  const fileName = req.path;
+  if (fileName.endsWith('.js')) {
+    res.setHeader('content-type', 'text/javascript');
+  }
+
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
